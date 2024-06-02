@@ -1,14 +1,14 @@
 create table "ItemConfiguracao" (
     "Codigo" serial primary key,
-    "Descricao" varchar(50),
+    "Descricao" varchar(50) not null,
     "Fabricante" varchar(50),
     "Modelo" varchar(50),
     "Porcentagem" float,
     "Temperatura" float,
-    "Situacao" int,
+    "Situacao" int not null,
     "CodigoIntegracao" varchar(50),
     "CapacidadeGB" double precision,
-    "Categoria" int,
+    "Categoria" int not null,
     "Tipo" varchar(50),
     "FrequenciaMHz" int,
     "Nucleos" int
@@ -16,46 +16,47 @@ create table "ItemConfiguracao" (
 
 create table "SolucaoContorno" (
     "Codigo" serial primary key,
-    "Descricao" varchar(50),
-    "Situacao" int,
-    "Solucao" text
+    "Descricao" varchar(50) not null,
+    "Situacao" int not null,
+    "Solucao" text not null
 );
 
 create table "RegraEventoCriticidade" (
     "Codigo" serial primary key,
-    "Descricao" varchar(50),
-    "TipoEventoCriticidade" int,
-    "Condicao" int,
-    "PropriedadeVerificar" int,
-    "ValorPropriedade" float,
-    "CodigoItemConfiguracao" int references "ItemConfiguracao"("Codigo"),
+    "Descricao" varchar(50) not null,
+    "TipoEventoCriticidade" int not null,
+    "Condicao" int not null,
+    "PropriedadeVerificar" int not null,
+    "ValorPropriedade" float not null,
+    "CodigoItemConfiguracao" int references "ItemConfiguracao"("Codigo") not null,
     "CodigoSolucaoContorno" int references "SolucaoContorno"("Codigo"),
-    "Prioridade" int,
-    "Impacto" int
+    "Prioridade" int not null,
+    "Impacto" int not null
 );
 
 create table "Incidente" (
     "Codigo" serial primary key,
-    "Descricao" varchar(50),
+    "Descricao" varchar(50) not null,
     "CodigoItemConfiguracao" int references "ItemConfiguracao"("Codigo"),
     "CodigoSolucaoContorno" int references "SolucaoContorno"("Codigo"),
-    "Situacao" int,
-    "Impacto" int,
-    "Prioridade" int,
+    "Situacao" int not null,
+    "Impacto" int not null,
+    "Prioridade" int not null,
     "Observacao" text,
     "CodigoRegraEventoCriticidade" int references "RegraEventoCriticidade"("Codigo")
 );
 
 create table "EventoCriticidade" (
     "Codigo" serial primary key,
-    "Descricao" varchar(50),
-    "TipoEventoCriticidade" int,
-    "Condicao" int,
-    "PropriedadeVerificada" int,
-    "ValorPropriedade" float,
-    "CodigoItemConfiguracao" int references "ItemConfiguracao"("Codigo"),
+    "Descricao" varchar(50) not null,
+    "TipoEventoCriticidade" int not null,
+    "DataGeracao" date not null,
+    "Condicao" int not null,
+    "PropriedadeVerificada" int not null,
+    "ValorPropriedade" float not null,
+    "CodigoItemConfiguracao" int references "ItemConfiguracao"("Codigo") not null,
     "CodigoSolucaoContorno" int references "SolucaoContorno"("Codigo"),
-    "Prioridade" int,
-    "Impacto" int,
-    "CodigoRegraEventoCriticidade" int references "RegraEventoCriticidade"("Codigo")
+    "Prioridade" int not null,
+    "Impacto" int not null,
+    "CodigoRegraEventoCriticidade" int references "RegraEventoCriticidade"("Codigo") not null
 );
