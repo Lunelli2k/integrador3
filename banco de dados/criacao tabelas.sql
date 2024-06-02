@@ -21,16 +21,6 @@ create table "SolucaoContorno" (
     "Solucao" text
 );
 
-create table "Incidente" (
-    "Codigo" serial primary key,
-    "Descricao" varchar(50),
-    "CodigoItemConfiguracao" int references "ItemConfiguracao"("Codigo"),
-    "CodigoSolucaoContorno" int references "SolucaoContorno"("Codigo"),
-    "Situacao" int,
-    "Impacto" int,
-    "Observacao" text
-);
-
 create table "RegraEventoCriticidade" (
     "Codigo" serial primary key,
     "Descricao" varchar(50),
@@ -39,5 +29,33 @@ create table "RegraEventoCriticidade" (
     "PropriedadeVerificar" int,
     "ValorPropriedade" float,
     "CodigoItemConfiguracao" int references "ItemConfiguracao"("Codigo"),
-    "CodigoSolucaoContorno" int references "SolucaoContorno"("Codigo")
+    "CodigoSolucaoContorno" int references "SolucaoContorno"("Codigo"),
+    "Prioridade" int,
+    "Impacto" int
+);
+
+create table "Incidente" (
+    "Codigo" serial primary key,
+    "Descricao" varchar(50),
+    "CodigoItemConfiguracao" int references "ItemConfiguracao"("Codigo"),
+    "CodigoSolucaoContorno" int references "SolucaoContorno"("Codigo"),
+    "Situacao" int,
+    "Impacto" int,
+    "Prioridade" int,
+    "Observacao" text,
+    "CodigoRegraEventoCriticidade" int references "RegraEventoCriticidade"("Codigo")
+);
+
+create table "EventoCriticidade" (
+    "Codigo" serial primary key,
+    "Descricao" varchar(50),
+    "TipoEventoCriticidade" int,
+    "Condicao" int,
+    "PropriedadeVerificada" int,
+    "ValorPropriedade" float,
+    "CodigoItemConfiguracao" int references "ItemConfiguracao"("Codigo"),
+    "CodigoSolucaoContorno" int references "SolucaoContorno"("Codigo"),
+    "Prioridade" int,
+    "Impacto" int,
+    "CodigoRegraEventoCriticidade" int references "RegraEventoCriticidade"("Codigo")
 );
