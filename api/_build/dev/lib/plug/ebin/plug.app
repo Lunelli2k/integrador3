@@ -47,6 +47,6 @@
                         'Elixir.Plug.TimeoutError','Elixir.Plug.Upload',
                         'Elixir.Plug.UploadError',plug_multipart]},
               {registered,[]},
-              {vsn,"1.15.3"},
+              {vsn,"1.16.0"},
               {mod,{'Elixir.Plug.Application',[]}},
               {env,[{validate_header_keys_during_test,true}]}]}.
