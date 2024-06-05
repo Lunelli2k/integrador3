@@ -31,7 +31,8 @@ create table "RegraEventoCriticidade" (
     "CodigoItemConfiguracao" int references "ItemConfiguracao"("Codigo") not null,
     "CodigoSolucaoContorno" int references "SolucaoContorno"("Codigo"),
     "Prioridade" int not null,
-    "Impacto" int not null
+    "Impacto" int not null,
+    "GeraIncidente" bool not null
 );
 
 create table "Incidente" (
@@ -43,7 +44,8 @@ create table "Incidente" (
     "Impacto" int not null,
     "Prioridade" int not null,
     "Observacao" text,
-    "CodigoRegraEventoCriticidade" int references "RegraEventoCriticidade"("Codigo")
+    "CodigoRegraEventoCriticidade" int references "RegraEventoCriticidade"("Codigo"),
+    "DataGeracao" date not null
 );
 
 create table "EventoCriticidade" (
