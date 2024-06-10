@@ -82,7 +82,7 @@
                         'Elixir.String.Chars.Postgrex.Copy',
                         'Elixir.String.Chars.Postgrex.Query']},
               {registered,[]},
-              {vsn,"0.17.5"},
+              {vsn,"0.18.0"},
               {mod,{'Elixir.Postgrex.App',[]}},
               {env,[{type_server_reap_after,180000},
                     {json_library,'Elixir.Jason'}]}]}.
