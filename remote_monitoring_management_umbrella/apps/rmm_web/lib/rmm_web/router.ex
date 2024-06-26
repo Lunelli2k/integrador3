@@ -13,11 +13,11 @@ defmodule RmmWeb.Router do
     plug :fetch_current_user
   end
 
-  scope "/", RmmWeb do
-    pipe_through :browser
+  # scope "/", RmmWeb do
+  #   pipe_through :browser
 
-    get "/", PageController, :home
-  end
+  #   get "/", PageController, :home
+  # end
 
   # Other scopes may use custom stacks.
   # scope "/api", RmmWeb do
@@ -57,6 +57,8 @@ defmodule RmmWeb.Router do
 
   scope "/", RmmWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
+
+    get "/", UserSessionController, :new
 
     get "/user/register", UserRegistrationController, :new
     post "/user/register", UserRegistrationController, :create
