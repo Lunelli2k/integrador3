@@ -6,7 +6,6 @@ create table "ItemConfiguracao" (
     "Porcentagem" float,
     "Temperatura" float,
     "Situacao" int not null,
-    "CodigoIntegracao" varchar(50),
     "CapacidadeGB" double precision,
     "Categoria" int not null,
     "Tipo" varchar(50),
@@ -45,14 +44,14 @@ create table "Incidente" (
     "Prioridade" int not null,
     "Observacao" text,
     "CodigoRegraEventoCriticidade" int references "RegraEventoCriticidade"("Codigo"),
-    "DataGeracao" date not null
+    "DataGeracao" timestamp not null
 );
 
 create table "EventoCriticidade" (
     "Codigo" serial primary key,
     "Descricao" varchar(50) not null,
     "TipoEventoCriticidade" int not null,
-    "DataGeracao" date not null,
+    "DataGeracao" timestamp not null,
     "Condicao" int not null,
     "PropriedadeVerificada" int not null,
     "ValorPropriedade" float not null,

@@ -2,7 +2,7 @@ defmodule Rmm.EstruturasDeDados.Entidades.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "user" do
+  schema "users" do
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
