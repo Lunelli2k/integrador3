@@ -1,0 +1,30 @@
+<.simple_form :let={f} for={@changeset} action={@action}>
+  <.error :if={@changeset.action}>
+    Oops, something went wrong! Please check the errors below.
+  </.error>
+  <.input field={f[:codigo]} type="number" label="Codigo" />
+  <.input field={f[:descricao]} type="text" label="Descricao" />
+  <.input field={f[:codigo_item_configuracao]} type="number" label="Codigo item configuracao" />
+  <.input field={f[:codigo_solucao_contorno]} type="number" label="Codigo solucao contorno" />
+  <.input
+    field={f[:situacao]}
+    type="select"
+    label="Situacao"
+    prompt="Choose a value"
+    options={Ecto.Enum.values(Rmm.EstruturasDeDados.Entidades.Incidente, :situacao)}
+  />
+  <.input field={f[:observacao]} type="text" label="Observacao" />
+  <.input
+    field={f[:impacto]}
+    type="select"
+    label="Impacto"
+    prompt="Choose a value"
+    options={Ecto.Enum.values(Rmm.EstruturasDeDados.Entidades.Incidente, :impacto)}
+  />
+  <.input field={f[:prioridade]} type="number" label="Prioridade" />
+  <.input field={f[:codigo_regra_evento_criticidade]} type="number" label="Codigo regra evento criticidade" />
+  <.input field={f[:data_geracao]} type="datetime-local" label="Data geracao" />
+  <:actions>
+    <.button>Save Incidente</.button>
+  </:actions>
+</.simple_form>

@@ -1,6 +1,8 @@
 defmodule RmmWeb.Router do
   use RmmWeb, :router
   alias SolucaoContornoController
+  alias IncidenteController
+
   import RmmWeb.UserAuth
 
   pipeline :browser do
@@ -16,14 +18,6 @@ defmodule RmmWeb.Router do
   pipeline :api do
     plug :accepts, ["json"]
   end
-
-  # scope "/", RmmWeb do
-  #   pipe_through :browser
-
-  #   get "/", PageController, :home
-  # end
-
-  # Other scopes may use custom stacks.
 
   scope "/api", RmmWeb do
     pipe_through :api
@@ -100,4 +94,11 @@ defmodule RmmWeb.Router do
 
     resources "/", SolucaoContornoController
   end
+
+  scope "/incidentes", RmmWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    resources "/", IncidenteController
+  end
+
 end

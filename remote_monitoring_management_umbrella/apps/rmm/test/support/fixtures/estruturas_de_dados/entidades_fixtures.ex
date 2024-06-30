@@ -70,4 +70,27 @@ defmodule Rmm.EstruturasDeDados.EntidadesFixtures do
 
     solucao_contorno
   end
+
+  @doc """
+  Generate a incidente.
+  """
+  def incidente_fixture(attrs \\ %{}) do
+    {:ok, incidente} =
+      attrs
+      |> Enum.into(%{
+        codigo: 42,
+        codigo_item_configuracao: 42,
+        codigo_regra_evento_criticidade: 42,
+        codigo_solucao_contorno: 42,
+        data_geracao: ~U[2024-06-29 15:02:00Z],
+        descricao: "some descricao",
+        impacto: :Nenhum,
+        observacao: "some observacao",
+        prioridade: 42,
+        situacao: :Aberto
+      })
+      |> Rmm.EstruturasDeDados.Entidades.create_incidente()
+
+    incidente
+  end
 end

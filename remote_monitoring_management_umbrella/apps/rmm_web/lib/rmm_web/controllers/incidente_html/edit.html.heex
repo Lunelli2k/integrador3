@@ -1,0 +1,8 @@
+<.header>
+  Edit Incidente <%= @incidente.id %>
+  <:subtitle>Use this form to manage incidente records in your database.</:subtitle>
+</.header>
+
+<.incidente_form changeset={@changeset} action={~p"/incidentes/#{@incidente}"} />
+
+<.back navigate={~p"/incidentes"}>Back to incidentes</.back>
