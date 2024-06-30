@@ -505,4 +505,76 @@ defmodule Rmm.EstruturasDeDados.EntidadesTest do
       refute inspect(%User{password: "123456"}) =~ "password: \"123456\""
     end
   end
+
+  describe "incidentes" do
+    alias Rmm.EstruturasDeDados.Entidades.Incidente
+
+    import Rmm.EstruturasDeDados.EntidadesFixtures
+
+    @invalid_attrs %{codigo: nil, descricao: nil, codigo_item_configuracao: nil, codigo_solucao_contorno: nil, situacao: nil, observacao: nil, impacto: nil, prioridade: nil, codigo_regra_evento_criticidade: nil, data_geracao: nil}
+
+    test "list_incidentes/0 returns all incidentes" do
+      incidente = incidente_fixture()
+      assert Entidades.list_incidentes() == [incidente]
+    end
+
+    test "get_incidente!/1 returns the incidente with given id" do
+      incidente = incidente_fixture()
+      assert Entidades.get_incidente!(incidente.id) == incidente
+    end
+
+    test "create_incidente/1 with valid data creates a incidente" do
+      valid_attrs = %{codigo: 42, descricao: "some descricao", codigo_item_configuracao: 42, codigo_solucao_contorno: 42, situacao: :Aberto, observacao: "some observacao", impacto: :Nenhum, prioridade: 42, codigo_regra_evento_criticidade: 42, data_geracao: ~U[2024-06-29 15:02:00Z]}
+
+      assert {:ok, %Incidente{} = incidente} = Entidades.create_incidente(valid_attrs)
+      assert incidente.codigo == 42
+      assert incidente.descricao == "some descricao"
+      assert incidente.codigo_item_configuracao == 42
+      assert incidente.codigo_solucao_contorno == 42
+      assert incidente.situacao == :Aberto
+      assert incidente.observacao == "some observacao"
+      assert incidente.impacto == :Nenhum
+      assert incidente.prioridade == 42
+      assert incidente.codigo_regra_evento_criticidade == 42
+      assert incidente.data_geracao == ~U[2024-06-29 15:02:00Z]
+    end
+
+    test "create_incidente/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Entidades.create_incidente(@invalid_attrs)
+    end
+
+    test "update_incidente/2 with valid data updates the incidente" do
+      incidente = incidente_fixture()
+      update_attrs = %{codigo: 43, descricao: "some updated descricao", codigo_item_configuracao: 43, codigo_solucao_contorno: 43, situacao: :Solucionando, observacao: "some updated observacao", impacto: :Baixo, prioridade: 43, codigo_regra_evento_criticidade: 43, data_geracao: ~U[2024-06-30 15:02:00Z]}
+
+      assert {:ok, %Incidente{} = incidente} = Entidades.update_incidente(incidente, update_attrs)
+      assert incidente.codigo == 43
+      assert incidente.descricao == "some updated descricao"
+      assert incidente.codigo_item_configuracao == 43
+      assert incidente.codigo_solucao_contorno == 43
+      assert incidente.situacao == :Solucionando
+      assert incidente.observacao == "some updated observacao"
+      assert incidente.impacto == :Baixo
+      assert incidente.prioridade == 43
+      assert incidente.codigo_regra_evento_criticidade == 43
+      assert incidente.data_geracao == ~U[2024-06-30 15:02:00Z]
+    end
+
+    test "update_incidente/2 with invalid data returns error changeset" do
+      incidente = incidente_fixture()
+      assert {:error, %Ecto.Changeset{}} = Entidades.update_incidente(incidente, @invalid_attrs)
+      assert incidente == Entidades.get_incidente!(incidente.id)
+    end
+
+    test "delete_incidente/1 deletes the incidente" do
+      incidente = incidente_fixture()
+      assert {:ok, %Incidente{}} = Entidades.delete_incidente(incidente)
+      assert_raise Ecto.NoResultsError, fn -> Entidades.get_incidente!(incidente.id) end
+    end
+
+    test "change_incidente/1 returns a incidente changeset" do
+      incidente = incidente_fixture()
+      assert %Ecto.Changeset{} = Entidades.change_incidente(incidente)
+    end
+  end
 end

@@ -1,5 +1,6 @@
 defmodule RmmWeb.Router do
   use RmmWeb, :router
+  alias IncidenteController
 
   import RmmWeb.UserAuth
 
@@ -13,11 +14,11 @@ defmodule RmmWeb.Router do
     plug :fetch_current_user
   end
 
-  # scope "/", RmmWeb do
-  #   pipe_through :browser
+  scope "/", RmmWeb do
+    pipe_through [:browser, :require_authenticated_user]
 
-  #   get "/", PageController, :home
-  # end
+    get "/", PageController, :home
+  end
 
   # Other scopes may use custom stacks.
   # scope "/api", RmmWeb do
@@ -86,5 +87,11 @@ defmodule RmmWeb.Router do
     post "/user/confirm", UserConfirmationController, :create
     get "/user/confirm/:token", UserConfirmationController, :edit
     post "/user/confirm/:token", UserConfirmationController, :update
+  end
+
+  scope "/", RmmWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    resources "/incidentes", IncidenteController
   end
 end

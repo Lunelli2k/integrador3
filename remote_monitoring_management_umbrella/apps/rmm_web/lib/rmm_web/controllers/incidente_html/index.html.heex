@@ -1,0 +1,32 @@
+<.header>
+  Listing Incidentes
+  <:actions>
+    <.link href={~p"/incidentes/new"}>
+      <.button>New Incidente</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="incidentes" rows={@incidentes} row_click={&JS.navigate(~p"/incidentes/#{&1}")}>
+  <:col :let={incidente} label="Codigo"><%= incidente.codigo %></:col>
+  <:col :let={incidente} label="Descricao"><%= incidente.descricao %></:col>
+  <:col :let={incidente} label="Codigo item configuracao"><%= incidente.codigo_item_configuracao %></:col>
+  <:col :let={incidente} label="Codigo solucao contorno"><%= incidente.codigo_solucao_contorno %></:col>
+  <:col :let={incidente} label="Situacao"><%= incidente.situacao %></:col>
+  <:col :let={incidente} label="Observacao"><%= incidente.observacao %></:col>
+  <:col :let={incidente} label="Impacto"><%= incidente.impacto %></:col>
+  <:col :let={incidente} label="Prioridade"><%= incidente.prioridade %></:col>
+  <:col :let={incidente} label="Codigo regra evento criticidade"><%= incidente.codigo_regra_evento_criticidade %></:col>
+  <:col :let={incidente} label="Data geracao"><%= incidente.data_geracao %></:col>
+  <:action :let={incidente}>
+    <div class="sr-only">
+      <.link navigate={~p"/incidentes/#{incidente}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/incidentes/#{incidente}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={incidente}>
+    <.link href={~p"/incidentes/#{incidente}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>
