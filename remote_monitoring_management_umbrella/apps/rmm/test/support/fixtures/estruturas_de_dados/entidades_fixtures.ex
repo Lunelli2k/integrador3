@@ -28,4 +28,21 @@ defmodule Rmm.EstruturasDeDados.EntidadesFixtures do
     [_, token | _] = String.split(captured_email.text_body, "[TOKEN]")
     token
   end
+
+  @doc """
+  Generate a solucao_contorno.
+  """
+  def solucao_contorno_fixture(attrs \\ %{}) do
+    {:ok, solucao_contorno} =
+      attrs
+      |> Enum.into(%{
+        codigo: 42,
+        descricao: "some descricao",
+        situacao: :Ativo,
+        solucao: "some solucao"
+      })
+      |> Rmm.EstruturasDeDados.Entidades.create_solucao_contorno()
+
+    solucao_contorno
+  end
 end

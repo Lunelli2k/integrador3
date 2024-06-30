@@ -1,6 +1,6 @@
 defmodule RmmWeb.Router do
   use RmmWeb, :router
-
+  alias SolucaoContornoController
   import RmmWeb.UserAuth
 
   pipeline :browser do
@@ -86,5 +86,11 @@ defmodule RmmWeb.Router do
     post "/user/confirm", UserConfirmationController, :create
     get "/user/confirm/:token", UserConfirmationController, :edit
     post "/user/confirm/:token", UserConfirmationController, :update
+  end
+
+  scope "/", RmmWeb do
+    pipe_through [:browser,  :require_authenticated_user]
+
+    resources "/solucoes_contorno", SolucaoContornoController
   end
 end
