@@ -13,6 +13,10 @@ defmodule RmmWeb.Router do
     plug :fetch_current_user
   end
 
+  pipeline :api do
+    plug :accepts, ["json"]
+  end
+
   # scope "/", RmmWeb do
   #   pipe_through :browser
 
@@ -20,13 +24,6 @@ defmodule RmmWeb.Router do
   # end
 
   # Other scopes may use custom stacks.
-  # scope "/api", RmmWeb do
-  #   pipe_through :api
-  # end
-
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
 
   scope "/api", RmmWeb do
     pipe_through :api
@@ -56,35 +53,46 @@ defmodule RmmWeb.Router do
   ## Authentication routes
 
   scope "/", RmmWeb do
-    pipe_through [:browser, :redirect_if_user_is_authenticated]
-
-    get "/", UserSessionController, :new
-
-    get "/user/register", UserRegistrationController, :new
-    post "/user/register", UserRegistrationController, :create
-    get "/user/log_in", UserSessionController, :new
-    post "/user/log_in", UserSessionController, :create
-    get "/user/reset_password", UserResetPasswordController, :new
-    post "/user/reset_password", UserResetPasswordController, :create
-    get "/user/reset_password/:token", UserResetPasswordController, :edit
-    put "/user/reset_password/:token", UserResetPasswordController, :update
-  end
-
-  scope "/", RmmWeb do
     pipe_through [:browser, :require_authenticated_user]
 
-    get "/user/settings", UserSettingsController, :edit
-    put "/user/settings", UserSettingsController, :update
-    get "/user/settings/confirm_email/:token", UserSettingsController, :confirm_email
+    get "/", PageController, :home
   end
 
-  scope "/", RmmWeb do
+  scope "/user", RmmWeb do
+    pipe_through [:browser, :redirect_if_user_is_authenticated]
+
+    get "/register", UserRegistrationController, :new
+    post "/register", UserRegistrationController, :create
+    get "/log_in", UserSessionController, :new
+    post "/log_in", UserSessionController, :create
+    get "/reset_password", UserResetPasswordController, :new
+    post "/reset_password", UserResetPasswordController, :create
+    get "/reset_password/:token", UserResetPasswordController, :edit
+    put "/reset_password/:token", UserResetPasswordController, :update
+  end
+
+  scope "/user", RmmWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    get "/settings", UserSettingsController, :edit
+    put "/settings", UserSettingsController, :update
+    get "/settings/confirm_email/:token", UserSettingsController, :confirm_email
+  end
+
+  scope "/user", RmmWeb do
     pipe_through [:browser]
 
-    delete "/user/log_out", UserSessionController, :delete
-    get "/user/confirm", UserConfirmationController, :new
-    post "/user/confirm", UserConfirmationController, :create
-    get "/user/confirm/:token", UserConfirmationController, :edit
-    post "/user/confirm/:token", UserConfirmationController, :update
+    delete "/log_out", UserSessionController, :delete
+    get "/confirm", UserConfirmationController, :new
+    post "/confirm", UserConfirmationController, :create
+    get "/confirm/:token", UserConfirmationController, :edit
+    post "/confirm/:token", UserConfirmationController, :update
   end
+
+  scope "/itens_configuracao", RmmWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    resources "/", ItemConfiguracaoController, except: [:create, :delete, :new]
+  end
+
 end
