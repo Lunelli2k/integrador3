@@ -13,7 +13,6 @@ defmodule RmmWeb.Router do
     plug :fetch_current_user
   end
 
-
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -22,7 +21,6 @@ defmodule RmmWeb.Router do
   scope "/", RmmWeb do
     pipe_through [:browser, :require_authenticated_user]
 
-    get "/", PageController, :home
     post "/enviar_estado", APIController, :enviar_estado
   end
 
@@ -60,20 +58,34 @@ defmodule RmmWeb.Router do
   end
 
   scope "/", RmmWeb do
+
     pipe_through [:browser, :require_authenticated_user]
 
-    get "/user/settings", UserSettingsController, :edit
-    put "/user/settings", UserSettingsController, :update
-    get "/user/settings/confirm_email/:token", UserSettingsController, :confirm_email
+    get "/", PageController, :home
   end
 
-  scope "/", RmmWeb do
+  scope "/user", RmmWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    get "/settings", UserSettingsController, :edit
+    put "/settings", UserSettingsController, :update
+    get "/settings/confirm_email/:token", UserSettingsController, :confirm_email
+  end
+
+  scope "/user", RmmWeb do
     pipe_through [:browser]
 
-    delete "/user/log_out", UserSessionController, :delete
-    get "/user/confirm", UserConfirmationController, :new
-    post "/user/confirm", UserConfirmationController, :create
-    get "/user/confirm/:token", UserConfirmationController, :edit
-    post "/user/confirm/:token", UserConfirmationController, :update
+    delete "/log_out", UserSessionController, :delete
+    get "/confirm", UserConfirmationController, :new
+    post "/confirm", UserConfirmationController, :create
+    get "/confirm/:token", UserConfirmationController, :edit
+    post "/confirm/:token", UserConfirmationController, :update
   end
+
+  scope "/itens_configuracao", RmmWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    resources "/", ItemConfiguracaoController, except: [:create, :delete, :new]
+  end
+
 end

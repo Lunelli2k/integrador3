@@ -350,4 +350,100 @@ defmodule Rmm.EstruturasDeDados.Entidades do
       {:error, :user, changeset, _} -> {:error, changeset}
     end
   end
+
+  alias Rmm.EstruturasDeDados.Entidades.ItemConfiguracao
+
+  @doc """
+  Returns the list of itens_configuracao.
+
+  ## Examples
+
+      iex> list_itens_configuracao()
+      [%ItemConfiguracao{}, ...]
+
+  """
+  def list_itens_configuracao do
+    Repo.all(ItemConfiguracao)
+  end
+
+  @doc """
+  Gets a single item_configuracao.
+
+  Raises `Ecto.NoResultsError` if the Item configuracao does not exist.
+
+  ## Examples
+
+      iex> get_item_configuracao!(123)
+      %ItemConfiguracao{}
+
+      iex> get_item_configuracao!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_item_configuracao!(id), do: Repo.get!(ItemConfiguracao, id)
+
+  @doc """
+  Creates a item_configuracao.
+
+  ## Examples
+
+      iex> create_item_configuracao(%{field: value})
+      {:ok, %ItemConfiguracao{}}
+
+      iex> create_item_configuracao(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_item_configuracao(attrs \\ %{}) do
+    %ItemConfiguracao{}
+    |> ItemConfiguracao.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a item_configuracao.
+
+  ## Examples
+
+      iex> update_item_configuracao(item_configuracao, %{field: new_value})
+      {:ok, %ItemConfiguracao{}}
+
+      iex> update_item_configuracao(item_configuracao, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_item_configuracao(%ItemConfiguracao{} = item_configuracao, attrs) do
+    item_configuracao
+    |> ItemConfiguracao.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a item_configuracao.
+
+  ## Examples
+
+      iex> delete_item_configuracao(item_configuracao)
+      {:ok, %ItemConfiguracao{}}
+
+      iex> delete_item_configuracao(item_configuracao)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_item_configuracao(%ItemConfiguracao{} = item_configuracao) do
+    Repo.delete(item_configuracao)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking item_configuracao changes.
+
+  ## Examples
+
+      iex> change_item_configuracao(item_configuracao)
+      %Ecto.Changeset{data: %ItemConfiguracao{}}
+
+  """
+  def change_item_configuracao(%ItemConfiguracao{} = item_configuracao, attrs \\ %{}) do
+    ItemConfiguracao.changeset(item_configuracao, attrs)
+  end
 end
