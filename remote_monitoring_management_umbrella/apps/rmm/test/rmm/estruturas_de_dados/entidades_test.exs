@@ -506,6 +506,82 @@ defmodule Rmm.EstruturasDeDados.EntidadesTest do
     end
   end
 
+  describe "itens_configuracao" do
+    alias Rmm.EstruturasDeDados.Entidades.ItemConfiguracao
+
+    import Rmm.EstruturasDeDados.EntidadesFixtures
+
+    @invalid_attrs %{descricao: nil, fabricante: nil, marca: nil, porcentagem_uso: nil, temperatura: nil, situacao: nil, capacidade_gb: nil, tipo: nil, nucleos: nil, frequencia_mhz: nil, categoria: nil, codigo_integracao: nil}
+
+    test "list_itens_configuracao/0 returns all itens_configuracao" do
+      item_configuracao = item_configuracao_fixture()
+      assert Entidades.list_itens_configuracao() == [item_configuracao]
+    end
+
+    test "get_item_configuracao!/1 returns the item_configuracao with given id" do
+      item_configuracao = item_configuracao_fixture()
+      assert Entidades.get_item_configuracao!(item_configuracao.id) == item_configuracao
+    end
+
+    test "create_item_configuracao/1 with valid data creates a item_configuracao" do
+      valid_attrs = %{descricao: "some descricao", fabricante: "some fabricante", marca: "some marca", porcentagem_uso: 120.5, temperatura: 120.5, situacao: :Ativo, capacidade_gb: 42, tipo: "some tipo", nucleos: 42, frequencia_mhz: 42, categoria: :CPU, codigo_integracao: "some codigo_integracao"}
+
+      assert {:ok, %ItemConfiguracao{} = item_configuracao} = Entidades.create_item_configuracao(valid_attrs)
+      assert item_configuracao.descricao == "some descricao"
+      assert item_configuracao.fabricante == "some fabricante"
+      assert item_configuracao.marca == "some marca"
+      assert item_configuracao.porcentagem_uso == 120.5
+      assert item_configuracao.temperatura == 120.5
+      assert item_configuracao.situacao == :Ativo
+      assert item_configuracao.capacidade_gb == 42
+      assert item_configuracao.tipo == "some tipo"
+      assert item_configuracao.nucleos == 42
+      assert item_configuracao.frequencia_mhz == 42
+      assert item_configuracao.categoria == :CPU
+      assert item_configuracao.codigo_integracao == "some codigo_integracao"
+    end
+
+    test "create_item_configuracao/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Entidades.create_item_configuracao(@invalid_attrs)
+    end
+
+    test "update_item_configuracao/2 with valid data updates the item_configuracao" do
+      item_configuracao = item_configuracao_fixture()
+      update_attrs = %{descricao: "some updated descricao", fabricante: "some updated fabricante", marca: "some updated marca", porcentagem_uso: 456.7, temperatura: 456.7, situacao: :"1", capacidade_gb: 43, tipo: "some updated tipo", nucleos: 43, frequencia_mhz: 43, categoria: :"Memória Principal", codigo_integracao: "some updated codigo_integracao"}
+
+      assert {:ok, %ItemConfiguracao{} = item_configuracao} = Entidades.update_item_configuracao(item_configuracao, update_attrs)
+      assert item_configuracao.descricao == "some updated descricao"
+      assert item_configuracao.fabricante == "some updated fabricante"
+      assert item_configuracao.marca == "some updated marca"
+      assert item_configuracao.porcentagem_uso == 456.7
+      assert item_configuracao.temperatura == 456.7
+      assert item_configuracao.situacao == :"1"
+      assert item_configuracao.capacidade_gb == 43
+      assert item_configuracao.tipo == "some updated tipo"
+      assert item_configuracao.nucleos == 43
+      assert item_configuracao.frequencia_mhz == 43
+      assert item_configuracao.categoria == :"Memória Principal"
+      assert item_configuracao.codigo_integracao == "some updated codigo_integracao"
+    end
+
+    test "update_item_configuracao/2 with invalid data returns error changeset" do
+      item_configuracao = item_configuracao_fixture()
+      assert {:error, %Ecto.Changeset{}} = Entidades.update_item_configuracao(item_configuracao, @invalid_attrs)
+      assert item_configuracao == Entidades.get_item_configuracao!(item_configuracao.id)
+    end
+
+    test "delete_item_configuracao/1 deletes the item_configuracao" do
+      item_configuracao = item_configuracao_fixture()
+      assert {:ok, %ItemConfiguracao{}} = Entidades.delete_item_configuracao(item_configuracao)
+      assert_raise Ecto.NoResultsError, fn -> Entidades.get_item_configuracao!(item_configuracao.id) end
+    end
+
+    test "change_item_configuracao/1 returns a item_configuracao changeset" do
+      item_configuracao = item_configuracao_fixture()
+      assert %Ecto.Changeset{} = Entidades.change_item_configuracao(item_configuracao)
+    end
+  end
+
   describe "solucoes_contorno" do
     alias Rmm.EstruturasDeDados.Entidades.SolucaoContorno
 

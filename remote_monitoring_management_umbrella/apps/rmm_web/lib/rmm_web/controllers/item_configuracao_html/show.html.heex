@@ -1,0 +1,25 @@
+<.header>
+  Item de Configuração: <%= @item_configuracao.descricao %>
+  <:actions>
+    <.link href={~p"/itens_configuracao/#{@item_configuracao}/edit"}>
+      <.button>Editar Item de Configuração</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Descrição"><%= @item_configuracao.descricao %></:item>
+  <:item title="Fabricante"><%= @item_configuracao.fabricante %></:item>
+  <:item title="Marca"><%= @item_configuracao.marca %></:item>
+  <:item title="Porcentagem de uso"><%= @item_configuracao.porcentagem_uso %></:item>
+  <:item title="Temperatura"><%= @item_configuracao.temperatura %></:item>
+  <:item title="Situação"><%= @item_configuracao.situacao %></:item>
+  <:item title="Capacidade em GB"><%= @item_configuracao.capacidade_gb %></:item>
+  <:item title="Tipo"><%= @item_configuracao.tipo %></:item>
+  <:item title="Núcleos"><%= @item_configuracao.nucleos %></:item>
+  <:item title="Frequencia em MHZ"><%= @item_configuracao.frequencia_mhz %></:item>
+  <:item title="Categoria"><%= @item_configuracao.categoria %></:item>
+  <:item title="Código de integração"><%= @item_configuracao.codigo_integracao %></:item>
+</.list>
+
+<.back navigate={~p"/itens_configuracao"}>Voltar para a listagem</.back>
