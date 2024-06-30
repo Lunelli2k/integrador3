@@ -581,4 +581,70 @@ defmodule Rmm.EstruturasDeDados.EntidadesTest do
       assert %Ecto.Changeset{} = Entidades.change_item_configuracao(item_configuracao)
     end
   end
+
+  describe "regras_eventos_criticidade" do
+    alias Rmm.EstruturasDeDados.Entidades.RegraEventoCriticidade
+
+    import Rmm.EstruturasDeDados.EntidadesFixtures
+
+    @invalid_attrs %{descricao: nil, tipo_evento_criticidade: nil, condicao: nil, propriedade_verificar: nil, valor_propriedade: nil, prioridade: nil, impacto: nil}
+
+    test "list_regras_eventos_criticidade/0 returns all regras_eventos_criticidade" do
+      regra_evento_criticidade = regra_evento_criticidade_fixture()
+      assert Entidades.list_regras_eventos_criticidade() == [regra_evento_criticidade]
+    end
+
+    test "get_regra_evento_criticidade!/1 returns the regra_evento_criticidade with given id" do
+      regra_evento_criticidade = regra_evento_criticidade_fixture()
+      assert Entidades.get_regra_evento_criticidade!(regra_evento_criticidade.id) == regra_evento_criticidade
+    end
+
+    test "create_regra_evento_criticidade/1 with valid data creates a regra_evento_criticidade" do
+      valid_attrs = %{descricao: "some descricao", tipo_evento_criticidade: :Falha, condicao: :Maior, propriedade_verificar: :Temperatura, valor_propriedade: 120.5, prioridade: 42, impacto: :Nenhum}
+
+      assert {:ok, %RegraEventoCriticidade{} = regra_evento_criticidade} = Entidades.create_regra_evento_criticidade(valid_attrs)
+      assert regra_evento_criticidade.descricao == "some descricao"
+      assert regra_evento_criticidade.tipo_evento_criticidade == :Falha
+      assert regra_evento_criticidade.condicao == :Maior
+      assert regra_evento_criticidade.propriedade_verificar == :Temperatura
+      assert regra_evento_criticidade.valor_propriedade == 120.5
+      assert regra_evento_criticidade.prioridade == 42
+      assert regra_evento_criticidade.impacto == :Nenhum
+    end
+
+    test "create_regra_evento_criticidade/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Entidades.create_regra_evento_criticidade(@invalid_attrs)
+    end
+
+    test "update_regra_evento_criticidade/2 with valid data updates the regra_evento_criticidade" do
+      regra_evento_criticidade = regra_evento_criticidade_fixture()
+      update_attrs = %{descricao: "some updated descricao", tipo_evento_criticidade: :Alerta, condicao: :Igual, propriedade_verificar: :"Porcentagem de Uso", valor_propriedade: 456.7, prioridade: 43, impacto: :Baixo}
+
+      assert {:ok, %RegraEventoCriticidade{} = regra_evento_criticidade} = Entidades.update_regra_evento_criticidade(regra_evento_criticidade, update_attrs)
+      assert regra_evento_criticidade.descricao == "some updated descricao"
+      assert regra_evento_criticidade.tipo_evento_criticidade == :Alerta
+      assert regra_evento_criticidade.condicao == :Igual
+      assert regra_evento_criticidade.propriedade_verificar == :"Porcentagem de Uso"
+      assert regra_evento_criticidade.valor_propriedade == 456.7
+      assert regra_evento_criticidade.prioridade == 43
+      assert regra_evento_criticidade.impacto == :Baixo
+    end
+
+    test "update_regra_evento_criticidade/2 with invalid data returns error changeset" do
+      regra_evento_criticidade = regra_evento_criticidade_fixture()
+      assert {:error, %Ecto.Changeset{}} = Entidades.update_regra_evento_criticidade(regra_evento_criticidade, @invalid_attrs)
+      assert regra_evento_criticidade == Entidades.get_regra_evento_criticidade!(regra_evento_criticidade.id)
+    end
+
+    test "delete_regra_evento_criticidade/1 deletes the regra_evento_criticidade" do
+      regra_evento_criticidade = regra_evento_criticidade_fixture()
+      assert {:ok, %RegraEventoCriticidade{}} = Entidades.delete_regra_evento_criticidade(regra_evento_criticidade)
+      assert_raise Ecto.NoResultsError, fn -> Entidades.get_regra_evento_criticidade!(regra_evento_criticidade.id) end
+    end
+
+    test "change_regra_evento_criticidade/1 returns a regra_evento_criticidade changeset" do
+      regra_evento_criticidade = regra_evento_criticidade_fixture()
+      assert %Ecto.Changeset{} = Entidades.change_regra_evento_criticidade(regra_evento_criticidade)
+    end
+  end
 end

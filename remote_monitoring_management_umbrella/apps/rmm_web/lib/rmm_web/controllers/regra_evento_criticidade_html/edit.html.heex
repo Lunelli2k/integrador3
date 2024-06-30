@@ -1,0 +1,7 @@
+<.header>
+  Editar Regra de Evento de Criticidade: <%= @regra_evento_criticidade.descricao %>
+</.header>
+
+<.regra_evento_criticidade_form changeset={@changeset} action={~p"/regras_eventos_criticidade/#{@regra_evento_criticidade}"} />
+
+<.back navigate={~p"/itens_configuracao"}>Voltar para a listagem</.back>

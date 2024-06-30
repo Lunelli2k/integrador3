@@ -446,4 +446,100 @@ defmodule Rmm.EstruturasDeDados.Entidades do
   def change_item_configuracao(%ItemConfiguracao{} = item_configuracao, attrs \\ %{}) do
     ItemConfiguracao.changeset(item_configuracao, attrs)
   end
+
+  alias Rmm.EstruturasDeDados.Entidades.RegraEventoCriticidade
+
+  @doc """
+  Returns the list of regras_eventos_criticidade.
+
+  ## Examples
+
+      iex> list_regras_eventos_criticidade()
+      [%RegraEventoCriticidade{}, ...]
+
+  """
+  def list_regras_eventos_criticidade do
+    Repo.all(RegraEventoCriticidade)
+  end
+
+  @doc """
+  Gets a single regra_evento_criticidade.
+
+  Raises `Ecto.NoResultsError` if the Regra evento criticidade does not exist.
+
+  ## Examples
+
+      iex> get_regra_evento_criticidade!(123)
+      %RegraEventoCriticidade{}
+
+      iex> get_regra_evento_criticidade!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_regra_evento_criticidade!(id), do: Repo.get!(RegraEventoCriticidade, id)
+
+  @doc """
+  Creates a regra_evento_criticidade.
+
+  ## Examples
+
+      iex> create_regra_evento_criticidade(%{field: value})
+      {:ok, %RegraEventoCriticidade{}}
+
+      iex> create_regra_evento_criticidade(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_regra_evento_criticidade(attrs \\ %{}) do
+    %RegraEventoCriticidade{}
+    |> RegraEventoCriticidade.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a regra_evento_criticidade.
+
+  ## Examples
+
+      iex> update_regra_evento_criticidade(regra_evento_criticidade, %{field: new_value})
+      {:ok, %RegraEventoCriticidade{}}
+
+      iex> update_regra_evento_criticidade(regra_evento_criticidade, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_regra_evento_criticidade(%RegraEventoCriticidade{} = regra_evento_criticidade, attrs) do
+    regra_evento_criticidade
+    |> RegraEventoCriticidade.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a regra_evento_criticidade.
+
+  ## Examples
+
+      iex> delete_regra_evento_criticidade(regra_evento_criticidade)
+      {:ok, %RegraEventoCriticidade{}}
+
+      iex> delete_regra_evento_criticidade(regra_evento_criticidade)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_regra_evento_criticidade(%RegraEventoCriticidade{} = regra_evento_criticidade) do
+    Repo.delete(regra_evento_criticidade)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking regra_evento_criticidade changes.
+
+  ## Examples
+
+      iex> change_regra_evento_criticidade(regra_evento_criticidade)
+      %Ecto.Changeset{data: %RegraEventoCriticidade{}}
+
+  """
+  def change_regra_evento_criticidade(%RegraEventoCriticidade{} = regra_evento_criticidade, attrs \\ %{}) do
+    RegraEventoCriticidade.changeset(regra_evento_criticidade, attrs)
+  end
 end

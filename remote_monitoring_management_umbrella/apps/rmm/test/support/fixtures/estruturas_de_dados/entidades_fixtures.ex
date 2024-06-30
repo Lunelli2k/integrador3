@@ -53,4 +53,24 @@ defmodule Rmm.EstruturasDeDados.EntidadesFixtures do
 
     item_configuracao
   end
+
+  @doc """
+  Generate a regra_evento_criticidade.
+  """
+  def regra_evento_criticidade_fixture(attrs \\ %{}) do
+    {:ok, regra_evento_criticidade} =
+      attrs
+      |> Enum.into(%{
+        condicao: :Maior,
+        descricao: "some descricao",
+        impacto: :Nenhum,
+        prioridade: 42,
+        propriedade_verificar: :Temperatura,
+        tipo_evento_criticidade: :Falha,
+        valor_propriedade: 120.5
+      })
+      |> Rmm.EstruturasDeDados.Entidades.create_regra_evento_criticidade()
+
+    regra_evento_criticidade
+  end
 end

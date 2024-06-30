@@ -1,0 +1,29 @@
+<.header>
+ Regras de Eventos de Criticidade
+  <:actions>
+    <.link href={~p"/regras_eventos_criticidade/new"}>
+      <.button>Nova Regra de Evento de Criticidade</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="regras_eventos_criticidade" rows={@regras_eventos_criticidade} row_click={&JS.navigate(~p"/regras_eventos_criticidade/#{&1}")}>
+  <:col :let={regra_evento_criticidade} label="Descrição"><%= regra_evento_criticidade.descricao %></:col>
+  <:col :let={regra_evento_criticidade} label="Tipo de evento de Criticidade"><%= regra_evento_criticidade.tipo_evento_criticidade %></:col>
+  <:col :let={regra_evento_criticidade} label="Condição"><%= regra_evento_criticidade.condicao %></:col>
+  <:col :let={regra_evento_criticidade} label="Propriedade a verificar"><%= regra_evento_criticidade.propriedade_verificar %></:col>
+  <:col :let={regra_evento_criticidade} label="Valor da propriedade"><%= regra_evento_criticidade.valor_propriedade %></:col>
+  <:col :let={regra_evento_criticidade} label="Prioridade"><%= regra_evento_criticidade.prioridade %></:col>
+  <:col :let={regra_evento_criticidade} label="Impacto"><%= regra_evento_criticidade.impacto %></:col>
+  <:action :let={regra_evento_criticidade}>
+    <div class="sr-only">
+      <.link navigate={~p"/regras_eventos_criticidade/#{regra_evento_criticidade}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/regras_eventos_criticidade/#{regra_evento_criticidade}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={regra_evento_criticidade}>
+    <.link href={~p"/regras_eventos_criticidade/#{regra_evento_criticidade}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>

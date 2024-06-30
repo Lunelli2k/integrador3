@@ -1,0 +1,20 @@
+<.header>
+  Regra evento criticidade: <%= @regra_evento_criticidade.descricao %>
+  <:actions>
+    <.link href={~p"/regras_eventos_criticidade/#{@regra_evento_criticidade}/edit"}>
+      <.button>Editar Regra de Evento de Criticidade</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Descrição"><%= @regra_evento_criticidade.descricao %></:item>
+  <:item title="Tipo de Evento de Criticidade"><%= @regra_evento_criticidade.tipo_evento_criticidade %></:item>
+  <:item title="Condição"><%= @regra_evento_criticidade.condicao %></:item>
+  <:item title="Propriedade a verificar"><%= @regra_evento_criticidade.propriedade_verificar %></:item>
+  <:item title="Valor da propriedade"><%= @regra_evento_criticidade.valor_propriedade %></:item>
+  <:item title="Prioridade"><%= @regra_evento_criticidade.prioridade %></:item>
+  <:item title="Impacto"><%= @regra_evento_criticidade.impacto %></:item>
+</.list>
+
+<.back navigate={~p"/itens_configuracao"}>Voltar para a listagem</.back>
