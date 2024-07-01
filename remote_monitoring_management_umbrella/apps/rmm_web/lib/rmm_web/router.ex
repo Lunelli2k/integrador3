@@ -101,4 +101,10 @@ defmodule RmmWeb.Router do
     resources "/", IncidenteController
   end
 
+  scope "/regras_eventos_criticidade", RmmWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    resources "/", RegraEventoCriticidadeController
+  end
+
 end
