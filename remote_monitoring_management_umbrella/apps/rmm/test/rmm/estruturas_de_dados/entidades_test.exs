@@ -582,6 +582,138 @@ defmodule Rmm.EstruturasDeDados.EntidadesTest do
     end
   end
 
+  describe "solucoes_contorno" do
+    alias Rmm.EstruturasDeDados.Entidades.SolucaoContorno
+
+    import Rmm.EstruturasDeDados.EntidadesFixtures
+
+    @invalid_attrs %{codigo: nil, descricao: nil, situacao: nil, solucao: nil}
+
+    test "list_solucoes_contorno/0 returns all solucoes_contorno" do
+      solucao_contorno = solucao_contorno_fixture()
+      assert Entidades.list_solucoes_contorno() == [solucao_contorno]
+    end
+
+    test "get_solucao_contorno!/1 returns the solucao_contorno with given id" do
+      solucao_contorno = solucao_contorno_fixture()
+      assert Entidades.get_solucao_contorno!(solucao_contorno.id) == solucao_contorno
+    end
+
+    test "create_solucao_contorno/1 with valid data creates a solucao_contorno" do
+      valid_attrs = %{codigo: 42, descricao: "some descricao", situacao: :Ativo, solucao: "some solucao"}
+
+      assert {:ok, %SolucaoContorno{} = solucao_contorno} = Entidades.create_solucao_contorno(valid_attrs)
+      assert solucao_contorno.codigo == 42
+      assert solucao_contorno.descricao == "some descricao"
+      assert solucao_contorno.situacao == :Ativo
+      assert solucao_contorno.solucao == "some solucao"
+    end
+
+    test "create_solucao_contorno/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Entidades.create_solucao_contorno(@invalid_attrs)
+    end
+
+    test "update_solucao_contorno/2 with valid data updates the solucao_contorno" do
+      solucao_contorno = solucao_contorno_fixture()
+      update_attrs = %{codigo: 43, descricao: "some updated descricao", situacao: :Inativo, solucao: "some updated solucao"}
+
+      assert {:ok, %SolucaoContorno{} = solucao_contorno} = Entidades.update_solucao_contorno(solucao_contorno, update_attrs)
+      assert solucao_contorno.codigo == 43
+      assert solucao_contorno.descricao == "some updated descricao"
+      assert solucao_contorno.situacao == :Inativo
+      assert solucao_contorno.solucao == "some updated solucao"
+    end
+
+    test "update_solucao_contorno/2 with invalid data returns error changeset" do
+      solucao_contorno = solucao_contorno_fixture()
+      assert {:error, %Ecto.Changeset{}} = Entidades.update_solucao_contorno(solucao_contorno, @invalid_attrs)
+      assert solucao_contorno == Entidades.get_solucao_contorno!(solucao_contorno.id)
+    end
+
+    test "delete_solucao_contorno/1 deletes the solucao_contorno" do
+      solucao_contorno = solucao_contorno_fixture()
+      assert {:ok, %SolucaoContorno{}} = Entidades.delete_solucao_contorno(solucao_contorno)
+      assert_raise Ecto.NoResultsError, fn -> Entidades.get_solucao_contorno!(solucao_contorno.id) end
+    end
+
+    test "change_solucao_contorno/1 returns a solucao_contorno changeset" do
+      solucao_contorno = solucao_contorno_fixture()
+      assert %Ecto.Changeset{} = Entidades.change_solucao_contorno(solucao_contorno)
+    end
+  end
+
+  describe "incidentes" do
+    alias Rmm.EstruturasDeDados.Entidades.Incidente
+
+    import Rmm.EstruturasDeDados.EntidadesFixtures
+
+    @invalid_attrs %{codigo: nil, descricao: nil, codigo_item_configuracao: nil, codigo_solucao_contorno: nil, situacao: nil, observacao: nil, impacto: nil, prioridade: nil, codigo_regra_evento_criticidade: nil, data_geracao: nil}
+
+    test "list_incidentes/0 returns all incidentes" do
+      incidente = incidente_fixture()
+      assert Entidades.list_incidentes() == [incidente]
+    end
+
+    test "get_incidente!/1 returns the incidente with given id" do
+      incidente = incidente_fixture()
+      assert Entidades.get_incidente!(incidente.id) == incidente
+    end
+
+    test "create_incidente/1 with valid data creates a incidente" do
+      valid_attrs = %{codigo: 42, descricao: "some descricao", codigo_item_configuracao: 42, codigo_solucao_contorno: 42, situacao: :Aberto, observacao: "some observacao", impacto: :Nenhum, prioridade: 42, codigo_regra_evento_criticidade: 42, data_geracao: ~U[2024-06-29 15:02:00Z]}
+
+      assert {:ok, %Incidente{} = incidente} = Entidades.create_incidente(valid_attrs)
+      assert incidente.codigo == 42
+      assert incidente.descricao == "some descricao"
+      assert incidente.codigo_item_configuracao == 42
+      assert incidente.codigo_solucao_contorno == 42
+      assert incidente.situacao == :Aberto
+      assert incidente.observacao == "some observacao"
+      assert incidente.impacto == :Nenhum
+      assert incidente.prioridade == 42
+      assert incidente.codigo_regra_evento_criticidade == 42
+      assert incidente.data_geracao == ~U[2024-06-29 15:02:00Z]
+    end
+
+    test "create_incidente/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Entidades.create_incidente(@invalid_attrs)
+    end
+
+    test "update_incidente/2 with valid data updates the incidente" do
+      incidente = incidente_fixture()
+      update_attrs = %{codigo: 43, descricao: "some updated descricao", codigo_item_configuracao: 43, codigo_solucao_contorno: 43, situacao: :Solucionando, observacao: "some updated observacao", impacto: :Baixo, prioridade: 43, codigo_regra_evento_criticidade: 43, data_geracao: ~U[2024-06-30 15:02:00Z]}
+
+      assert {:ok, %Incidente{} = incidente} = Entidades.update_incidente(incidente, update_attrs)
+      assert incidente.codigo == 43
+      assert incidente.descricao == "some updated descricao"
+      assert incidente.codigo_item_configuracao == 43
+      assert incidente.codigo_solucao_contorno == 43
+      assert incidente.situacao == :Solucionando
+      assert incidente.observacao == "some updated observacao"
+      assert incidente.impacto == :Baixo
+      assert incidente.prioridade == 43
+      assert incidente.codigo_regra_evento_criticidade == 43
+      assert incidente.data_geracao == ~U[2024-06-30 15:02:00Z]
+    end
+
+    test "update_incidente/2 with invalid data returns error changeset" do
+      incidente = incidente_fixture()
+      assert {:error, %Ecto.Changeset{}} = Entidades.update_incidente(incidente, @invalid_attrs)
+      assert incidente == Entidades.get_incidente!(incidente.id)
+    end
+
+    test "delete_incidente/1 deletes the incidente" do
+      incidente = incidente_fixture()
+      assert {:ok, %Incidente{}} = Entidades.delete_incidente(incidente)
+      assert_raise Ecto.NoResultsError, fn -> Entidades.get_incidente!(incidente.id) end
+    end
+
+    test "change_incidente/1 returns a incidente changeset" do
+      incidente = incidente_fixture()
+      assert %Ecto.Changeset{} = Entidades.change_incidente(incidente)
+    end
+  end
+
   describe "regras_eventos_criticidade" do
     alias Rmm.EstruturasDeDados.Entidades.RegraEventoCriticidade
 
@@ -628,6 +760,74 @@ defmodule Rmm.EstruturasDeDados.EntidadesTest do
       assert regra_evento_criticidade.valor_propriedade == 456.7
       assert regra_evento_criticidade.prioridade == 43
       assert regra_evento_criticidade.impacto == :Baixo
+    end
+
+    test "update_regra_evento_criticidade/2 with invalid data returns error changeset" do
+      regra_evento_criticidade = regra_evento_criticidade_fixture()
+      assert {:error, %Ecto.Changeset{}} = Entidades.update_regra_evento_criticidade(regra_evento_criticidade, @invalid_attrs)
+      assert regra_evento_criticidade == Entidades.get_regra_evento_criticidade!(regra_evento_criticidade.id)
+    end
+
+    test "delete_regra_evento_criticidade/1 deletes the regra_evento_criticidade" do
+      regra_evento_criticidade = regra_evento_criticidade_fixture()
+      assert {:ok, %RegraEventoCriticidade{}} = Entidades.delete_regra_evento_criticidade(regra_evento_criticidade)
+      assert_raise Ecto.NoResultsError, fn -> Entidades.get_regra_evento_criticidade!(regra_evento_criticidade.id) end
+    end
+
+    test "change_regra_evento_criticidade/1 returns a regra_evento_criticidade changeset" do
+      regra_evento_criticidade = regra_evento_criticidade_fixture()
+      assert %Ecto.Changeset{} = Entidades.change_regra_evento_criticidade(regra_evento_criticidade)
+    end
+  end
+
+  describe "regras_eventos_criticidade" do
+    alias Rmm.EstruturasDeDados.Entidades.RegraEventoCriticidade
+
+    import Rmm.EstruturasDeDados.EntidadesFixtures
+
+    @invalid_attrs %{descricao: nil, tipo_evento_criticidade: nil, condicao: nil, propriedade_verificar: nil, valor_propriedade: nil, prioridade: nil, impacto: nil, gera_incidente: nil}
+
+    test "list_regras_eventos_criticidade/0 returns all regras_eventos_criticidade" do
+      regra_evento_criticidade = regra_evento_criticidade_fixture()
+      assert Entidades.list_regras_eventos_criticidade() == [regra_evento_criticidade]
+    end
+
+    test "get_regra_evento_criticidade!/1 returns the regra_evento_criticidade with given id" do
+      regra_evento_criticidade = regra_evento_criticidade_fixture()
+      assert Entidades.get_regra_evento_criticidade!(regra_evento_criticidade.id) == regra_evento_criticidade
+    end
+
+    test "create_regra_evento_criticidade/1 with valid data creates a regra_evento_criticidade" do
+      valid_attrs = %{descricao: "some descricao", tipo_evento_criticidade: :Falha, condicao: :Maior, propriedade_verificar: :Temperatura, valor_propriedade: 120.5, prioridade: 42, impacto: :Nenhum, gera_incidente: true}
+
+      assert {:ok, %RegraEventoCriticidade{} = regra_evento_criticidade} = Entidades.create_regra_evento_criticidade(valid_attrs)
+      assert regra_evento_criticidade.descricao == "some descricao"
+      assert regra_evento_criticidade.tipo_evento_criticidade == :Falha
+      assert regra_evento_criticidade.condicao == :Maior
+      assert regra_evento_criticidade.propriedade_verificar == :Temperatura
+      assert regra_evento_criticidade.valor_propriedade == 120.5
+      assert regra_evento_criticidade.prioridade == 42
+      assert regra_evento_criticidade.impacto == :Nenhum
+      assert regra_evento_criticidade.gera_incidente == true
+    end
+
+    test "create_regra_evento_criticidade/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Entidades.create_regra_evento_criticidade(@invalid_attrs)
+    end
+
+    test "update_regra_evento_criticidade/2 with valid data updates the regra_evento_criticidade" do
+      regra_evento_criticidade = regra_evento_criticidade_fixture()
+      update_attrs = %{descricao: "some updated descricao", tipo_evento_criticidade: :Alerta, condicao: :Igual, propriedade_verificar: :"Porcentagem de Uso", valor_propriedade: 456.7, prioridade: 43, impacto: :Baixo, gera_incidente: false}
+
+      assert {:ok, %RegraEventoCriticidade{} = regra_evento_criticidade} = Entidades.update_regra_evento_criticidade(regra_evento_criticidade, update_attrs)
+      assert regra_evento_criticidade.descricao == "some updated descricao"
+      assert regra_evento_criticidade.tipo_evento_criticidade == :Alerta
+      assert regra_evento_criticidade.condicao == :Igual
+      assert regra_evento_criticidade.propriedade_verificar == :"Porcentagem de Uso"
+      assert regra_evento_criticidade.valor_propriedade == 456.7
+      assert regra_evento_criticidade.prioridade == 43
+      assert regra_evento_criticidade.impacto == :Baixo
+      assert regra_evento_criticidade.gera_incidente == false
     end
 
     test "update_regra_evento_criticidade/2 with invalid data returns error changeset" do

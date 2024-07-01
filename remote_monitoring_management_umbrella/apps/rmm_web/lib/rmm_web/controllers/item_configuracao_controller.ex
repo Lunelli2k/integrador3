@@ -2,7 +2,6 @@ defmodule RmmWeb.ItemConfiguracaoController do
   use RmmWeb, :controller
 
   alias Rmm.EstruturasDeDados.Entidades
-  alias Rmm.EstruturasDeDados.Entidades.ItemConfiguracao
 
   def index(conn, _params) do
     itens_configuracao = Entidades.list_itens_configuracao()

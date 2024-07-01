@@ -2,15 +2,15 @@
   <.error :if={@changeset.action}>
     Oops, something went wrong! Please check the errors below.
   </.error>
-  <.input field={f[:descricao]} type="text" label="Descricao" />
+  <.input field={f[:descricao]} type="text" label="Descrição" />
   <.input
     field={f[:situacao]}
     type="select"
-    label="Situacao"
-    prompt="Choose a value"
+    label="Situação"
+    prompt="Selecione uma opção"
     options={Ecto.Enum.values(Rmm.EstruturasDeDados.Entidades.ItemConfiguracao, :situacao)}
   />
   <:actions>
-    <.button>Save Item configuracao</.button>
+    <.button>Salvar Item de configuração</.button>
   </:actions>
 </.simple_form>

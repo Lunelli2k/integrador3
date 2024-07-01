@@ -3,9 +3,9 @@ defmodule RmmWeb.RegraEventoCriticidadeControllerTest do
 
   import Rmm.EstruturasDeDados.EntidadesFixtures
 
-  @create_attrs %{descricao: "some descricao", tipo_evento_criticidade: :Falha, condicao: :Maior, propriedade_verificar: :Temperatura, valor_propriedade: 120.5, prioridade: 42, impacto: :Nenhum}
-  @update_attrs %{descricao: "some updated descricao", tipo_evento_criticidade: :Alerta, condicao: :Igual, propriedade_verificar: :"Porcentagem de Uso", valor_propriedade: 456.7, prioridade: 43, impacto: :Baixo}
-  @invalid_attrs %{descricao: nil, tipo_evento_criticidade: nil, condicao: nil, propriedade_verificar: nil, valor_propriedade: nil, prioridade: nil, impacto: nil}
+  @create_attrs %{descricao: "some descricao", tipo_evento_criticidade: :Falha, condicao: :Maior, propriedade_verificar: :Temperatura, valor_propriedade: 120.5, prioridade: 42, impacto: :Nenhum, gera_incidente: true}
+  @update_attrs %{descricao: "some updated descricao", tipo_evento_criticidade: :Alerta, condicao: :Igual, propriedade_verificar: :"Porcentagem de Uso", valor_propriedade: 456.7, prioridade: 43, impacto: :Baixo, gera_incidente: false}
+  @invalid_attrs %{descricao: nil, tipo_evento_criticidade: nil, condicao: nil, propriedade_verificar: nil, valor_propriedade: nil, prioridade: nil, impacto: nil, gera_incidente: nil}
 
   describe "index" do
     test "lists all regras_eventos_criticidade", %{conn: conn} do
