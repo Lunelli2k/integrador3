@@ -1,5 +1,7 @@
 defmodule RmmWeb.Router do
   use RmmWeb, :router
+  alias SolucaoContornoController
+  alias IncidenteController
 
   import RmmWeb.UserAuth
 
@@ -86,6 +88,24 @@ defmodule RmmWeb.Router do
     pipe_through [:browser, :require_authenticated_user]
 
     resources "/", ItemConfiguracaoController, except: [:create, :delete, :new]
+  end
+
+  scope "/solucoes_contorno", RmmWeb do
+    pipe_through [:browser,  :require_authenticated_user]
+
+    resources "/", SolucaoContornoController
+  end
+
+  scope "/incidentes", RmmWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    resources "/", IncidenteController
+  end
+
+  scope "/regras_eventos_criticidade", RmmWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    resources "/", RegraEventoCriticidadeController
   end
 
 end

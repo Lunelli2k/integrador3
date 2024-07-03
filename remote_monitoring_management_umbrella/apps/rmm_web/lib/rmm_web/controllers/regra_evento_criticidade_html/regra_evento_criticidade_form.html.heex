@@ -1,0 +1,40 @@
+<.simple_form :let={f} for={@changeset} action={@action}>
+  <.error :if={@changeset.action}>
+    Oops, something went wrong! Please check the errors below.
+  </.error>
+  <.input field={f[:descricao]} type="text" label="Descrição" />
+  <.input
+    field={f[:tipo_evento_criticidade]}
+    type="select"
+    label="Tipo de Evento de Criticidade"
+    prompt="Selecione uma opção"
+    options={Ecto.Enum.values(Rmm.EstruturasDeDados.Entidades.RegraEventoCriticidade, :tipo_evento_criticidade)}
+  />
+  <.input
+    field={f[:condicao]}
+    type="select"
+    label="Condição"
+    prompt="Selecione uma opção"
+    options={Ecto.Enum.values(Rmm.EstruturasDeDados.Entidades.RegraEventoCriticidade, :condicao)}
+  />
+  <.input
+    field={f[:propriedade_verificar]}
+    type="select"
+    label="Propriedade a verificar"
+    prompt="Selecione uma opção"
+    options={Ecto.Enum.values(Rmm.EstruturasDeDados.Entidades.RegraEventoCriticidade, :propriedade_verificar)}
+  />
+  <.input field={f[:valor_propriedade]} type="number" label="Valor da propriedade" step="any" />
+  <.input field={f[:prioridade]} type="number" label="Prioridade" />
+  <.input
+    field={f[:impacto]}
+    type="select"
+    label="Impacto"
+    prompt="Selecione uma opção"
+    options={Ecto.Enum.values(Rmm.EstruturasDeDados.Entidades.RegraEventoCriticidade, :impacto)}
+  />
+  <.input field={f[:gera_incidente]} type="checkbox" label="Gera incidente" />
+  <:actions>
+    <.button>Salvar Regra de Evento de Criticidade</.button>
+  </:actions>
+</.simple_form>

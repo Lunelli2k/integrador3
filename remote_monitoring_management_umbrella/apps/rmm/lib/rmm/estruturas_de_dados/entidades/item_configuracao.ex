@@ -13,7 +13,7 @@ defmodule Rmm.EstruturasDeDados.Entidades.ItemConfiguracao do
     field :tipo, :string
     field :nucleos, :integer
     field :frequencia_mhz, :integer
-    field :categoria, Ecto.Enum, values: [:CPU, :"Memória Principal", :"Memória Secundária"]
+    field :categoria, Ecto.Enum, values: [:CPU, :"Memória Principal", :"Memória Secundária", :IOT]
     field :codigo_integracao, :string
 
     timestamps()
