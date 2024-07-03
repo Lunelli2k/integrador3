@@ -1,8 +1,8 @@
 <.header>
-  Edit Solucao contorno <%= @solucao_contorno.id %>
-  <:subtitle>Use this form to manage solucao_contorno records in your database.</:subtitle>
+  Editando Solução Nº<%= @solucao_contorno.id %>
+  <:subtitle>Use esse formulário para gerenciar as Soluções de Contorno do banco de dados.</:subtitle>
 </.header>
 
 <.solucao_contorno_form changeset={@changeset} action={~p"/solucoes_contorno/#{@solucao_contorno}"} />
 
-<.back navigate={~p"/solucoes_contorno"}>Back to solucoes_contorno</.back>
+<.back navigate={~p"/solucoes_contorno"}>Voltar</.back>
