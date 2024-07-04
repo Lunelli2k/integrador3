@@ -1,0 +1,29 @@
+<!-- live.html.heex -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+</head>
+<body>
+  <div>
+    <h1 style="color: rgb(22, 28, 34); font-size: 24px;">Dados Recebidos:</h1>
+    
+    <!-- Display Data -->
+    <div>
+      <strong>Capacidade de armazenamento:</strong> <%= @data["armazenamento_capacidade"] || "0.00" %> GB<br>
+      <strong>Utilizado:</strong> <%= @data["armazenamento_utilizado"] || "0.00" %> GB<br>
+      <strong>Percentual:</strong> <%= @data["armazenamento_utilizado_percentual"] || "0.00" %>%<br><br>
+      
+      <strong>Capacidade de memória:</strong> <%= @data["memoria_capacidade"] || "0.00" %> GB<br>
+      <strong>Porcentagem de memoria:</strong> <%= @data["memoria_percentual"] || "0.00" %>%<br><br>
+      
+      <strong>Frequência máxima:</strong> <%= @data["processador_freq_max"] || "0.00" %> MHz<br>
+      <strong>Frequência utilizada:</strong> <%= @data["processador_freq_atual"] || "0.00" %> MHz<br>
+      <strong>Percentual utilizado:</strong> <%= @data["processador_percentual"] || "0.00" %>%<br>
+      <strong>Temperatura:</strong> <%= @data["processador_temperatura"] || "N/A" %><br>
+    </div>
+  </div>
+</body>
+</html>

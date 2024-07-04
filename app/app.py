@@ -15,8 +15,8 @@ def get_cpu_temperature():
             return None
     elif platform.system() == "Windows":
         import wmi
-        w = wmi.WMI(namespace="root\\wmi")
-        temperature_info = w.MSAcpi_ThermalZoneTemperature()
+         w = wmi.WMI(namespace="root\OpenHardwareMonitor")
+        temperature_infos = w.Sensor()
         for temp in temperature_info:
             return temp.CurrentTemperature / 10.0 - 273.15
     else:
@@ -24,6 +24,7 @@ def get_cpu_temperature():
 
 # Function to update information
 def update_info():
+    max_frequency = psutil.cpu_freq().max
     cpu_usage = psutil.cpu_percent(interval=1)
     cpu_freq = psutil.cpu_freq().current
     cpu_cores = psutil.cpu_count(logical=False)
@@ -33,7 +34,6 @@ def update_info():
     memory_info = psutil.virtual_memory()
     memory_capacity = memory_info.total / (1024 ** 3)
     memory_usage = memory_info.percent
-    max_frequency = psutil.cpu_freq().max
 
     disk_usage = psutil.disk_usage('/')
     storage_total = disk_usage.total / (1024 ** 3)

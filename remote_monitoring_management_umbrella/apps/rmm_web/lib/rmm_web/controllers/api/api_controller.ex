@@ -12,6 +12,8 @@ defmodule RmmWeb.APIController do
       "data" => params
     }
 
+    RmmWeb.Endpoint.broadcast("estado:updates", "new_data", params)
+
     json(conn, response)
 
   end

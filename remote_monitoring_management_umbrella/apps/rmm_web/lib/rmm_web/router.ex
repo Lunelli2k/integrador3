@@ -15,15 +15,22 @@ defmodule RmmWeb.Router do
     plug :fetch_current_user
   end
 
+
   pipeline :api do
     plug :accepts, ["json"]
   end
 
 
   scope "/", RmmWeb do
-    pipe_through [:browser, :require_authenticated_user]
+    pipe_through [:api]
 
     post "/enviar_estado", APIController, :enviar_estado
+  end
+
+  scope "/", RmmWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    live "/monitor", DateLive, :show
   end
 
 
