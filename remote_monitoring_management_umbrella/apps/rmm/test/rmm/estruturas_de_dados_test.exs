@@ -194,4 +194,62 @@ defmodule Rmm.EstruturasDeDadosTest do
       assert %Ecto.Changeset{} = EstruturasDeDados.change_incidente(incidente)
     end
   end
+
+  describe "solucoes_contorno" do
+    alias Rmm.EstruturasDeDados.Entidades.SolucaoContorno
+
+    import Rmm.EstruturasDeDadosFixtures
+
+    @invalid_attrs %{descricao: nil, situacao: nil, solucao: nil}
+
+    test "list_solucoes_contorno/0 returns all solucoes_contorno" do
+      solucao_contorno = solucao_contorno_fixture()
+      assert EstruturasDeDados.list_solucoes_contorno() == [solucao_contorno]
+    end
+
+    test "get_solucao_contorno!/1 returns the solucao_contorno with given id" do
+      solucao_contorno = solucao_contorno_fixture()
+      assert EstruturasDeDados.get_solucao_contorno!(solucao_contorno.id) == solucao_contorno
+    end
+
+    test "create_solucao_contorno/1 with valid data creates a solucao_contorno" do
+      valid_attrs = %{descricao: "some descricao", situacao: :Ativo, solucao: "some solucao"}
+
+      assert {:ok, %SolucaoContorno{} = solucao_contorno} = EstruturasDeDados.create_solucao_contorno(valid_attrs)
+      assert solucao_contorno.descricao == "some descricao"
+      assert solucao_contorno.situacao == :Ativo
+      assert solucao_contorno.solucao == "some solucao"
+    end
+
+    test "create_solucao_contorno/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = EstruturasDeDados.create_solucao_contorno(@invalid_attrs)
+    end
+
+    test "update_solucao_contorno/2 with valid data updates the solucao_contorno" do
+      solucao_contorno = solucao_contorno_fixture()
+      update_attrs = %{descricao: "some updated descricao", situacao: :Inativo, solucao: "some updated solucao"}
+
+      assert {:ok, %SolucaoContorno{} = solucao_contorno} = EstruturasDeDados.update_solucao_contorno(solucao_contorno, update_attrs)
+      assert solucao_contorno.descricao == "some updated descricao"
+      assert solucao_contorno.situacao == :Inativo
+      assert solucao_contorno.solucao == "some updated solucao"
+    end
+
+    test "update_solucao_contorno/2 with invalid data returns error changeset" do
+      solucao_contorno = solucao_contorno_fixture()
+      assert {:error, %Ecto.Changeset{}} = EstruturasDeDados.update_solucao_contorno(solucao_contorno, @invalid_attrs)
+      assert solucao_contorno == EstruturasDeDados.get_solucao_contorno!(solucao_contorno.id)
+    end
+
+    test "delete_solucao_contorno/1 deletes the solucao_contorno" do
+      solucao_contorno = solucao_contorno_fixture()
+      assert {:ok, %SolucaoContorno{}} = EstruturasDeDados.delete_solucao_contorno(solucao_contorno)
+      assert_raise Ecto.NoResultsError, fn -> EstruturasDeDados.get_solucao_contorno!(solucao_contorno.id) end
+    end
+
+    test "change_solucao_contorno/1 returns a solucao_contorno changeset" do
+      solucao_contorno = solucao_contorno_fixture()
+      assert %Ecto.Changeset{} = EstruturasDeDados.change_solucao_contorno(solucao_contorno)
+    end
+  end
 end

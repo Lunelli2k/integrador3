@@ -60,4 +60,20 @@ defmodule Rmm.EstruturasDeDadosFixtures do
 
     incidente
   end
+
+  @doc """
+  Generate a solucao_contorno.
+  """
+  def solucao_contorno_fixture(attrs \\ %{}) do
+    {:ok, solucao_contorno} =
+      attrs
+      |> Enum.into(%{
+        descricao: "some descricao",
+        situacao: :Ativo,
+        solucao: "some solucao"
+      })
+      |> Rmm.EstruturasDeDados.create_solucao_contorno()
+
+    solucao_contorno
+  end
 end

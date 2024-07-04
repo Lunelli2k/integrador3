@@ -1,26 +1,25 @@
 <.header>
-  Listing Solucoes contorno
+  Lista de Soluções de Contorno
   <:actions>
     <.link href={~p"/solucoes_contorno/new"}>
-      <.button>New Solucao contorno</.button>
+      <.button>Nova solução de contorno</.button>
     </.link>
   </:actions>
 </.header>
 
 <.table id="solucoes_contorno" rows={@solucoes_contorno} row_click={&JS.navigate(~p"/solucoes_contorno/#{&1}")}>
-  <:col :let={solucao_contorno} label="Codigo"><%= solucao_contorno.codigo %></:col>
-  <:col :let={solucao_contorno} label="Descricao"><%= solucao_contorno.descricao %></:col>
-  <:col :let={solucao_contorno} label="Situacao"><%= solucao_contorno.situacao %></:col>
-  <:col :let={solucao_contorno} label="Solucao"><%= solucao_contorno.solucao %></:col>
+  <:col :let={solucao_contorno} label="Descrição"><%= solucao_contorno.descricao %></:col>
+  <:col :let={solucao_contorno} label="Situação"><%= solucao_contorno.situacao %></:col>
+  <:col :let={solucao_contorno} label="Solução"><%= solucao_contorno.solucao %></:col>
   <:action :let={solucao_contorno}>
     <div class="sr-only">
       <.link navigate={~p"/solucoes_contorno/#{solucao_contorno}"}>Show</.link>
     </div>
-    <.link navigate={~p"/solucoes_contorno/#{solucao_contorno}/edit"}>Edit</.link>
+    <.link navigate={~p"/solucoes_contorno/#{solucao_contorno}/edit"}>Editar</.link>
   </:action>
   <:action :let={solucao_contorno}>
-    <.link href={~p"/solucoes_contorno/#{solucao_contorno}"} method="delete" data-confirm="Are you sure?">
-      Delete
+    <.link href={~p"/solucoes_contorno/#{solucao_contorno}"} method="delete" data-confirm="Tem certeza?">
+      Apagar
     </.link>
   </:action>
 </.table>
