@@ -73,7 +73,7 @@
       <span class="box-label">Armazenamento</span>
     </div>
 
-    <%= if @data["processador_temperatura"] > 0 do %>
+    <%= if @data["processador_temperatura"] != "N/A" do %>
       <div class="temperature-box">
         Temperatura processador:  <%= @data["processador_temperatura"] %>&deg;C<br>
       </div>

@@ -41,6 +41,7 @@ def update_info():
     disk_usage = psutil.disk_usage('/')
     storage_total = disk_usage.total / (1024 ** 3)
     storage_used = disk_usage.used / (1024 ** 3)
+    storage_free = disk_usage.free / (1024 ** 3)
     storage_percent = disk_usage.percent
 
     usage_label.config(text=f"Uso: {cpu_usage}%")
@@ -54,7 +55,7 @@ def update_info():
     memory_label.config(text=f"Uso de memória: {memory_usage:.2f}%")
 
     storage_total_label.config(text=f"Capacidade total de armazenamento: {storage_total:.2f} GB")
-    storage_used_label.config(text=f"Uso de armazenamento: {storage_used:.2f} GB ({storage_percent}%)")
+    storage_used_label.config(text=f"Uso de armazenamento: {storage_used:.2f} GB, Livre: {storage_free:.2f} GB, ({storage_percent}%)")
 
     obj_teste = {
         "processador_freq_atual": f"{cpu_freq:.2f}",
@@ -65,13 +66,15 @@ def update_info():
         "memoria_percentual": f"{memory_usage:.2f}",
         "armazenamento_capacidade": f"{storage_total:.2f}",
         "armazenamento_utilizado_percentual": f"{storage_percent:.2f}",
-        "armazenamento_utilizado": f"{storage_used:.2f}"
+        "armazenamento_utilizado": f"{storage_used:.2f}",
+        "armazenamento_livre": f"{storage_free:.2f}"
     }
 
     if send_request_var.get() == 1:
         url = request_url_entry.get()
         if url:
-            response = requests.post(url, json=obj_teste)
+            headers = {}  # No token needed anymore
+            response = requests.post(url, json=obj_teste, headers=headers)
             print("\nStatus: " + str(response.status_code))
             print("Message: " + str(response.text))
 
