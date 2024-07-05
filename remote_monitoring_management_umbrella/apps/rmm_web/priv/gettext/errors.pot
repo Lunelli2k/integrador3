@@ -8,11 +8,11 @@
 ## date. Leave `msgstr`s empty as changing them here has no
 ## effect: edit them in PO (`.po`) files instead.
 ## From Ecto.Changeset.cast/4
-msgid "can't be blank"
+msgid "Campo de preenchimento obirgatório"
 msgstr ""
 
 ## From Ecto.Changeset.unique_constraint/3
-msgid "has already been taken"
+msgid "Já existe"
 msgstr ""
 
 ## From Ecto.Changeset.put_change/3
@@ -52,8 +52,8 @@ msgid_plural "should have %{count} item(s)"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "should be %{count} character(s)"
-msgid_plural "should be %{count} character(s)"
+msgid "Deve conter %{count} caracterer"
+msgid_plural "Deve conter %{count} caracteres"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -67,8 +67,8 @@ msgid_plural "should have at least %{count} item(s)"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "should be at least %{count} character(s)"
-msgid_plural "should be at least %{count} character(s)"
+msgid "Deve conter ao menos %{count} caracter"
+msgid_plural "Deve conter ao menos %{count} caracteres"
 msgstr[0] ""
 msgstr[1] ""
 

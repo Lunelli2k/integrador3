@@ -15,7 +15,23 @@
   <:item title="Valor da propriedade"><%= @regra_evento_criticidade.valor_propriedade %></:item>
   <:item title="Prioridade"><%= @regra_evento_criticidade.prioridade %></:item>
   <:item title="Impacto"><%= @regra_evento_criticidade.impacto %></:item>
-  <:item title="Gera Incidente"><%= @regra_evento_criticidade.gera_incidente %></:item>
+  <:item title="Gera Incidente"><%= if @regra_evento_criticidade.gera_incidente do %> Sim <% else %> Não <% end %></:item>
+
+  <:item title="IC">
+    <%= if @item_config do %>
+      <%= @item_config.descricao %>
+    <% else %>
+      Sem dados
+    <% end %>
+  </:item>
+  
+  <:item title="Solução de Contorno">
+    <%= if @solucao_contorno do %>
+      <%= @solucao_contorno.descricao %>
+    <% else %>
+      Sem dados
+    <% end %>
+  </:item>
 </.list>
 
 <.back navigate={~p"/regras_eventos_criticidade"}>Voltar para a listagem</.back>

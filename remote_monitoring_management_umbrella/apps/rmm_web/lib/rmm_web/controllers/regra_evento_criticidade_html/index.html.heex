@@ -15,7 +15,7 @@
   <:col :let={regra_evento_criticidade} label="Valor da propriedade"><%= regra_evento_criticidade.valor_propriedade %></:col>
   <:col :let={regra_evento_criticidade} label="Prioridade"><%= regra_evento_criticidade.prioridade %></:col>
   <:col :let={regra_evento_criticidade} label="Impacto"><%= regra_evento_criticidade.impacto %></:col>
-  <:col :let={regra_evento_criticidade} label="Gera incidente"><%= regra_evento_criticidade.gera_incidente %></:col>
+  <:col :let={regra_evento_criticidade} label="Gera incidente"><%= if regra_evento_criticidade.gera_incidente do %> Sim <% else %> Não <% end %></:col>
   <:action :let={regra_evento_criticidade}>
     <div class="sr-only">
       <.link navigate={~p"/regras_eventos_criticidade/#{regra_evento_criticidade}"}>Mostrar</.link>
