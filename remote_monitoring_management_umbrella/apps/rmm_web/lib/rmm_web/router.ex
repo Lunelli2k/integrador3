@@ -15,15 +15,22 @@ defmodule RmmWeb.Router do
     plug :fetch_current_user
   end
 
+
   pipeline :api do
     plug :accepts, ["json"]
   end
 
-  scope "/api", RmmWeb do
-    pipe_through :api
 
-    get "/", APIController, :teste
+  scope "/", RmmWeb do
+    pipe_through [:api]
+
     post "/enviar_estado", APIController, :enviar_estado
+  end
+
+  scope "/", RmmWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    live "/", DateLive, :show
   end
 
 
@@ -47,22 +54,23 @@ defmodule RmmWeb.Router do
   ## Authentication routes
 
   scope "/", RmmWeb do
+    pipe_through [:browser, :redirect_if_user_is_authenticated]
+
+    get "/user/register", UserRegistrationController, :new
+    post "/user/register", UserRegistrationController, :create
+    get "/user/log_in", UserSessionController, :new
+    post "/user/log_in", UserSessionController, :create
+    get "/user/reset_password", UserResetPasswordController, :new
+    post "/user/reset_password", UserResetPasswordController, :create
+    get "/user/reset_password/:token", UserResetPasswordController, :edit
+    put "/user/reset_password/:token", UserResetPasswordController, :update
+  end
+
+  scope "/", RmmWeb do
+
     pipe_through [:browser, :require_authenticated_user]
 
     get "/", PageController, :home
-  end
-
-  scope "/user", RmmWeb do
-    pipe_through [:browser, :redirect_if_user_is_authenticated]
-
-    get "/register", UserRegistrationController, :new
-    post "/register", UserRegistrationController, :create
-    get "/log_in", UserSessionController, :new
-    post "/log_in", UserSessionController, :create
-    get "/reset_password", UserResetPasswordController, :new
-    post "/reset_password", UserResetPasswordController, :create
-    get "/reset_password/:token", UserResetPasswordController, :edit
-    put "/reset_password/:token", UserResetPasswordController, :update
   end
 
   scope "/user", RmmWeb do

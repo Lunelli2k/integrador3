@@ -6,11 +6,12 @@ defmodule RmmWeb.APIController do
   end
 
   def enviar_estado(conn, params) do
-    IO.inspect(params)
 
     response = %{
       "data" => params
     }
+
+    RmmWeb.Endpoint.broadcast("estado:updates", "new_data", params)
 
     json(conn, response)
 
