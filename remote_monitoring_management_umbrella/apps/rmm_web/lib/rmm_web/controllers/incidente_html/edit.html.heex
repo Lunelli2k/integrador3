@@ -1,6 +1,5 @@
 <.header>
-  Edit Incidente <%= @incidente.id %>
-  <:subtitle>Use this form to manage incidente records in your database.</:subtitle>
+  Editar Incidente <%= @incidente.id %>
 </.header>
 
 <.incidente_form 
@@ -10,4 +9,4 @@
   solucoes_contorno={@solucoes_contorno}
   regras_eventos_criticidade={@regras_eventos_criticidade} />
 
-<.back navigate={~p"/incidentes"}>Back to incidentes</.back>
+<.back navigate={~p"/incidentes"}>Voltar para a listagem</.back>

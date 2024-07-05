@@ -1,9 +1,8 @@
 <.header>
-  Solucao contorno <%= @solucao_contorno.id %>
-  <:subtitle>This is a solucao_contorno record from your database.</:subtitle>
+  Solução de Contorno <%= @solucao_contorno.id %>
   <:actions>
     <.link href={~p"/solucoes_contorno/#{@solucao_contorno}/edit"}>
-      <.button>Edit solucao_contorno</.button>
+      <.button>Editar Solução de Contorno</.button>
     </.link>
   </:actions>
 </.header>
@@ -14,4 +13,4 @@
   <:item title="Solução"><%= @solucao_contorno.solucao %></:item>
 </.list>
 
-<.back navigate={~p"/solucoes_contorno"}>Back to solucoes_contorno</.back>
+<.back navigate={~p"/solucoes_contorno"}>Voltar para a listagem</.back>

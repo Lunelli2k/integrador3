@@ -2,7 +2,7 @@
   Lista de Soluções de Contorno
   <:actions>
     <.link href={~p"/solucoes_contorno/new"}>
-      <.button>Nova solução de contorno</.button>
+      <.button>Nova Solução de Contorno</.button>
     </.link>
   </:actions>
 </.header>
@@ -13,13 +13,13 @@
   <:col :let={solucao_contorno} label="Solução"><%= solucao_contorno.solucao %></:col>
   <:action :let={solucao_contorno}>
     <div class="sr-only">
-      <.link navigate={~p"/solucoes_contorno/#{solucao_contorno}"}>Show</.link>
+      <.link navigate={~p"/solucoes_contorno/#{solucao_contorno}"}>Mostrar</.link>
     </div>
     <.link navigate={~p"/solucoes_contorno/#{solucao_contorno}/edit"}>Editar</.link>
   </:action>
   <:action :let={solucao_contorno}>
     <.link href={~p"/solucoes_contorno/#{solucao_contorno}"} method="delete" data-confirm="Tem certeza?">
-      Apagar
+      Deletar
     </.link>
   </:action>
 </.table>
