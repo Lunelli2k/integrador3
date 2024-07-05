@@ -6,7 +6,6 @@ defmodule RmmWeb.APIController do
   end
 
   def enviar_estado(conn, params) do
-    IO.inspect(params)
 
     response = %{
       "data" => params

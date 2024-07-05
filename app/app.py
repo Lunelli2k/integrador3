@@ -14,11 +14,14 @@ def get_cpu_temperature():
         except FileNotFoundError:
             return None
     elif platform.system() == "Windows":
-        import wmi
-        w = wmi.WMI(namespace="root\\wmi")
-        temperature_info = w.MSAcpi_ThermalZoneTemperature()
-        for temp in temperature_info:
-            return temp.CurrentTemperature / 10.0 - 273.15
+        try:
+            import wmi
+            w = wmi.WMI(namespace="root\\wmi")
+            temperature_info = w.MSAcpi_ThermalZoneTemperature()
+            for temp in temperature_info:
+                return temp.CurrentTemperature / 10.0 - 273.15
+        except ImportError:
+            return None
     else:
         return None
 
@@ -67,21 +70,8 @@ def update_info():
 
     if send_request_var.get() == 1:
         url = request_url_entry.get()
-        token = request_bearer_entry.get()
-        if url and token:
-            headers = {"Authorization": f"Bearer {token}"}
-            obj_teste = {
-                "processador_freq_atual": f"{cpu_freq:.2f}",
-                "processador_freq_max": f"{max_frequency:.2f}",
-                "processador_percentual": f"{cpu_usage:.2f}",
-                "processador_temperatura": f"{cpu_temp}" if cpu_temp else "N/A",
-                "memoria_capacidade": f"{memory_capacity:.2f}",
-                "memoria_percentual": f"{memory_usage:.2f}",
-                "armazenamento_capacidade": f"{storage_total:.2f}",
-                "armazenamento_utilizado_percentual": f"{storage_percent:.2f}",
-                "armazenamento_utilizado": f"{storage_used:.2f}"
-            }
-            response = requests.post(url, json=obj_teste, headers=headers)
+        if url:
+            response = requests.post(url, json=obj_teste)
             print("\nStatus: " + str(response.status_code))
             print("Message: " + str(response.text))
 
@@ -90,8 +80,7 @@ def update_info():
 
 def check_inputs(*args):
     url = request_url_entry.get()
-    token = request_bearer_entry.get()
-    if url and token:
+    if url:
         activate_button.grid(row=15, column=0, columnspan=2)
     else:
         activate_button.grid_forget()
@@ -137,15 +126,9 @@ request_url_label.grid(row=13, column=0, columnspan=2)
 request_url_entry = tk.Entry(mainframe, width=45, font=('calibre', 10, 'normal'))
 request_url_entry.grid(row=14, column=1)
 
-request_bearer_label = tk.Label(mainframe, text='Bearer Token', font=('calibre', 10, 'bold'))
-request_bearer_label.grid(row=15, column=0, columnspan=2)
-request_bearer_entry = tk.Entry(mainframe, width=45, font=('calibre', 10, 'normal'))
-request_bearer_entry.grid(row=16, column=1)
-
-
 send_request_var = tk.IntVar()
 activate_button = ttk.Checkbutton(mainframe, text="Ativar envio de requisição", variable=send_request_var)
-activate_button.grid(row=17, column=0, columnspan=2)
+activate_button.grid(row=15, column=0, columnspan=2)
 
 for child in mainframe.winfo_children():
     child.grid_configure(padx=5, pady=5)
