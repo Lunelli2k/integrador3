@@ -30,7 +30,7 @@ defmodule RmmWeb.Router do
   scope "/", RmmWeb do
     pipe_through [:browser, :require_authenticated_user]
 
-    live "/monitor", DateLive, :show
+    live "/", DateLive, :show
   end
 
 

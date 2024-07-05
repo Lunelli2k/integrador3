@@ -85,7 +85,7 @@ def update_info():
             print("\nStatus: " + str(response.status_code))
             print("Message: " + str(response.text))
 
-    root.after(200, update_info)
+    root.after(1000, update_info)
 
 
 def check_inputs(*args):

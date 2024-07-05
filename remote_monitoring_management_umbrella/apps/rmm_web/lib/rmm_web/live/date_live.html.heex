@@ -30,52 +30,11 @@
       font-size: 16px;
       margin-top: 10px;
     }
-    .thermometer {
-      width: 200px;
-      height: 20px;
-      background-color: #f0f0f0;
-      border-radius: 10px;
-      margin: 20px auto;
-      position: relative;
-    }
-
-    .temperature-bar {
-      height: 100%;
-      border-radius: 10px;
-      background-color: #ff5252; /* Red */
-      position: absolute;
-      top: 0;
-      left: 0;
-      transition: width 0.5s ease; /* Smooth transition for width changes */
-    }
-
-    .temperature-markers {
-      position: absolute;
-      top: -15px;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      font-size: 14px;
-    }
-
-    .temperature-mark {
-      position: absolute;
-      width: 2px;
-      height: 10px;
-      background-color: #333;
-      top: 0;
-    }
-
-    .temperature-mark:nth-child(2n) {
-      height: 15px;
-      background-color: #666;
-    }
 
   </style>
 </head>
 <body>
   <div>
-    <h1 style="color: rgb(22, 28, 34); font-size: 24px;">Dados Recebidos:</h1>
     
     <div class="usage-box processor-box">
       <%= @data["processador_percentual"] || "0.00" %>%<br>
