@@ -15,8 +15,8 @@ def get_cpu_temperature():
             return None
     elif platform.system() == "Windows":
         import wmi
-         w = wmi.WMI(namespace="root\OpenHardwareMonitor")
-        temperature_infos = w.Sensor()
+        w = wmi.WMI(namespace="root\\wmi")
+        temperature_info = w.MSAcpi_ThermalZoneTemperature()
         for temp in temperature_info:
             return temp.CurrentTemperature / 10.0 - 273.15
     else:
@@ -74,7 +74,7 @@ def update_info():
                 "processador_freq_atual": f"{cpu_freq:.2f}",
                 "processador_freq_max": f"{max_frequency:.2f}",
                 "processador_percentual": f"{cpu_usage:.2f}",
-                "processador_temperatura": f"{cpu_temp:.2f}" if cpu_temp else "N/A",
+                "processador_temperatura": f"{cpu_temp}" if cpu_temp else "N/A",
                 "memoria_capacidade": f"{memory_capacity:.2f}",
                 "memoria_percentual": f"{memory_usage:.2f}",
                 "armazenamento_capacidade": f"{storage_total:.2f}",
@@ -85,7 +85,7 @@ def update_info():
             print("\nStatus: " + str(response.status_code))
             print("Message: " + str(response.text))
 
-    root.after(1000, update_info)
+    root.after(200, update_info)
 
 
 def check_inputs(*args):
