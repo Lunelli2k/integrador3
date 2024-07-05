@@ -6,19 +6,17 @@
   <:col :let={item_configuracao} label="Descrição"><%= item_configuracao.descricao %></:col>
   <:col :let={item_configuracao} label="Fabricante"><%= item_configuracao.fabricante %></:col>
   <:col :let={item_configuracao} label="Marca"><%= item_configuracao.marca %></:col>
-  <:col :let={item_configuracao} label="Porcentagem de uso"><%= item_configuracao.porcentagem_uso %></:col>
-  <:col :let={item_configuracao} label="Temperatura"><%= item_configuracao.temperatura %></:col>
   <:col :let={item_configuracao} label="Situação"><%= item_configuracao.situacao %></:col>
   <:col :let={item_configuracao} label="Capacidade em GB"><%= item_configuracao.capacidade_gb %></:col>
   <:col :let={item_configuracao} label="Tipo"><%= item_configuracao.tipo %></:col>
   <:col :let={item_configuracao} label="Núcleos"><%= item_configuracao.nucleos %></:col>
   <:col :let={item_configuracao} label="Frequência em MHZ"><%= item_configuracao.frequencia_mhz %></:col>
   <:col :let={item_configuracao} label="Categoria"><%= item_configuracao.categoria %></:col>
-  <:col :let={item_configuracao} label="Codigo de integração"><%= item_configuracao.codigo_integracao %></:col>
+  <:col :let={item_configuracao} label="Código de integração"><%= item_configuracao.codigo_integracao %></:col>
   <:action :let={item_configuracao}>
     <div class="sr-only">
-      <.link navigate={~p"/itens_configuracao/#{item_configuracao}"}>Show</.link>
+      <.link navigate={~p"/itens_configuracao/#{item_configuracao}"}>Mostrar</.link>
     </div>
-    <.link navigate={~p"/itens_configuracao/#{item_configuracao}/edit"}>Edit</.link>
+    <.link navigate={~p"/itens_configuracao/#{item_configuracao}/edit"}>Editar</.link>
   </:action>
 </.table>

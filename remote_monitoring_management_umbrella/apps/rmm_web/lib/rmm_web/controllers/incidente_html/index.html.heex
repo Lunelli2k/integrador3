@@ -1,8 +1,8 @@
 <.header>
-  Listing Incidentes
+  Incidentes
   <:actions>
     <.link href={~p"/incidentes/new"}>
-      <.button>New Incidente</.button>
+      <.button>Novo Incidente</.button>
     </.link>
   </:actions>
 </.header>
@@ -16,13 +16,13 @@
   <:col :let={incidente} label="Data Geração"><%= incidente.data_geracao %></:col>
   <:action :let={incidente}>
     <div class="sr-only">
-      <.link navigate={~p"/incidentes/#{incidente}"}>Show</.link>
+      <.link navigate={~p"/incidentes/#{incidente}"}>Mostrar</.link>
     </div>
-    <.link navigate={~p"/incidentes/#{incidente}/edit"}>Edit</.link>
+    <.link navigate={~p"/incidentes/#{incidente}/edit"}>Editar</.link>
   </:action>
   <:action :let={incidente}>
     <.link href={~p"/incidentes/#{incidente}"} method="delete" data-confirm="Are you sure?">
-      Delete
+      Deletar
     </.link>
   </:action>
 </.table>
