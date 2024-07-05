@@ -1,18 +1,17 @@
 <.simple_form :let={f} for={@changeset} action={@action}>
   <.error :if={@changeset.action}>
-    Oops, something went wrong! Please check the errors below.
+    Algo deu errado, confira os erros abaixo:
   </.error>
-  <.input field={f[:codigo]} type="number" label="Codigo" />
-  <.input field={f[:descricao]} type="text" label="Descricao" />
+  <.input field={f[:descricao]} type="text" label="Descrição" />
   <.input
     field={f[:situacao]}
     type="select"
-    label="Situacao"
-    prompt="Choose a value"
+    label="Situação"
+    prompt="Escolha a situação adequada"
     options={Ecto.Enum.values(Rmm.EstruturasDeDados.Entidades.SolucaoContorno, :situacao)}
   />
-  <.input field={f[:solucao]} type="text" label="Solucao" />
+  <.input field={f[:solucao]} type="text" label="Solução" />
   <:actions>
-    <.button>Save Solucao contorno</.button>
+    <.button>Salvar Solução</.button>
   </:actions>
 </.simple_form>

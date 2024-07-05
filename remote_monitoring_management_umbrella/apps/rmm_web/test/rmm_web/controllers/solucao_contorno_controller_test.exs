@@ -1,11 +1,11 @@
 defmodule RmmWeb.SolucaoContornoControllerTest do
   use RmmWeb.ConnCase
 
-  import Rmm.EstruturasDeDados.EntidadesFixtures
+  import Rmm.EstruturasDeDadosFixtures
 
-  @create_attrs %{codigo: 42, descricao: "some descricao", situacao: :Ativo, solucao: "some solucao"}
-  @update_attrs %{codigo: 43, descricao: "some updated descricao", situacao: :Inativo, solucao: "some updated solucao"}
-  @invalid_attrs %{codigo: nil, descricao: nil, situacao: nil, solucao: nil}
+  @create_attrs %{descricao: "some descricao", situacao: :Ativo, solucao: "some solucao"}
+  @update_attrs %{descricao: "some updated descricao", situacao: :Inativo, solucao: "some updated solucao"}
+  @invalid_attrs %{descricao: nil, situacao: nil, solucao: nil}
 
   describe "index" do
     test "lists all solucoes_contorno", %{conn: conn} do

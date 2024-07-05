@@ -3,6 +3,11 @@
   <:subtitle>Use this form to manage incidente records in your database.</:subtitle>
 </.header>
 
-<.incidente_form changeset={@changeset} action={~p"/incidentes"} />
+<.incidente_form 
+  changeset={@changeset} 
+  action={~p"/incidentes"} 
+  itens_configuracao={@itens_configuracao}
+  solucoes_contorno={@solucoes_contorno}
+  regras_eventos_criticidade={@regras_eventos_criticidade} />
 
-<.back navigate={~p"/incidentes"}>Back to incidentes</.back>
+<.back navigate={~p"/incidentes"}>Voltar para a listagem</.back>

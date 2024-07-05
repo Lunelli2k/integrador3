@@ -1,11 +1,11 @@
 defmodule RmmWeb.IncidenteControllerTest do
   use RmmWeb.ConnCase
 
-  import Rmm.EstruturasDeDados.EntidadesFixtures
+  import Rmm.EstruturasDeDadosFixtures
 
-  @create_attrs %{codigo: 42, descricao: "some descricao", codigo_item_configuracao: 42, codigo_solucao_contorno: 42, situacao: :Aberto, observacao: "some observacao", impacto: :Nenhum, prioridade: 42, codigo_regra_evento_criticidade: 42, data_geracao: ~U[2024-06-29 15:02:00Z]}
-  @update_attrs %{codigo: 43, descricao: "some updated descricao", codigo_item_configuracao: 43, codigo_solucao_contorno: 43, situacao: :Solucionando, observacao: "some updated observacao", impacto: :Baixo, prioridade: 43, codigo_regra_evento_criticidade: 43, data_geracao: ~U[2024-06-30 15:02:00Z]}
-  @invalid_attrs %{codigo: nil, descricao: nil, codigo_item_configuracao: nil, codigo_solucao_contorno: nil, situacao: nil, observacao: nil, impacto: nil, prioridade: nil, codigo_regra_evento_criticidade: nil, data_geracao: nil}
+  @create_attrs %{descricao: "some descricao", situacao: :Aberto, observacao: "some observacao", impacto: :Nenhum, prioridade: 42, data_geracao: ~U[2024-07-01 22:56:00Z]}
+  @update_attrs %{descricao: "some updated descricao", situacao: :Solucionando, observacao: "some updated observacao", impacto: :Baixo, prioridade: 43, data_geracao: ~U[2024-07-02 22:56:00Z]}
+  @invalid_attrs %{descricao: nil, situacao: nil, observacao: nil, impacto: nil, prioridade: nil, data_geracao: nil}
 
   describe "index" do
     test "lists all incidentes", %{conn: conn} do

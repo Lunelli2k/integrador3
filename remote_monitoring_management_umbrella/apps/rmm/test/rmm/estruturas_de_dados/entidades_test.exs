@@ -53,8 +53,8 @@ defmodule Rmm.EstruturasDeDados.EntidadesTest do
       {:error, changeset} = Entidades.register_user(%{})
 
       assert %{
-               password: ["can't be blank"],
-               email: ["can't be blank"]
+               password: ["Campo de preenchimento obirgatório"],
+               email: ["Campo de preenchimento obirgatório"]
              } = errors_on(changeset)
     end
 
@@ -62,8 +62,8 @@ defmodule Rmm.EstruturasDeDados.EntidadesTest do
       {:error, changeset} = Entidades.register_user(%{email: "not valid", password: "not valid"})
 
       assert %{
-               email: ["must have the @ sign and no spaces"],
-               password: ["should be at least 12 character(s)"]
+               email: ["O email deve conter '@' e não deve conter espaços"],
+               password: ["A senha deve conter ao menos 12 caracteres"]
              } = errors_on(changeset)
     end
 
@@ -77,11 +77,11 @@ defmodule Rmm.EstruturasDeDados.EntidadesTest do
     test "validates email uniqueness" do
       %{email: email} = user_fixture()
       {:error, changeset} = Entidades.register_user(%{email: email})
-      assert "has already been taken" in errors_on(changeset).email
+      assert "O email já está cadastrado" in errors_on(changeset).email
 
       # Now try with the upper cased email too, to check that email case is ignored.
       {:error, changeset} = Entidades.register_user(%{email: String.upcase(email)})
-      assert "has already been taken" in errors_on(changeset).email
+      assert "O email já está cadastrado" in errors_on(changeset).email
     end
 
     test "registers user with a hashed password" do

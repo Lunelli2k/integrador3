@@ -7,18 +7,38 @@
     </.link>
   </:actions>
 </.header>
-
 <.list>
-  <:item title="Codigo"><%= @incidente.codigo %></:item>
   <:item title="Descricao"><%= @incidente.descricao %></:item>
-  <:item title="Codigo item configuracao"><%= @incidente.codigo_item_configuracao %></:item>
-  <:item title="Codigo solucao contorno"><%= @incidente.codigo_solucao_contorno %></:item>
   <:item title="Situacao"><%= @incidente.situacao %></:item>
   <:item title="Observacao"><%= @incidente.observacao %></:item>
   <:item title="Impacto"><%= @incidente.impacto %></:item>
   <:item title="Prioridade"><%= @incidente.prioridade %></:item>
-  <:item title="Codigo regra evento criticidade"><%= @incidente.codigo_regra_evento_criticidade %></:item>
+
+  <:item title="Código IC">
+    <%= if @item_config do %>
+      <%= @item_config.descricao %>
+    <% else %>
+      Sem dados
+    <% end %>
+  </:item>
+  
+  <:item title="Solução de Contorno">
+    <%= if @solucao_contorno do %>
+      <%= @solucao_contorno.descricao %>
+    <% else %>
+      Sem dados
+    <% end %>
+  </:item>
+  
+  <:item title="Regra Evento Criticidade">
+    <%= if @regra_evento do %>
+      <%= @regra_evento.descricao %>
+    <% else %>
+      Sem dados
+    <% end %>
+  </:item>
+
   <:item title="Data geracao"><%= @incidente.data_geracao %></:item>
 </.list>
 
-<.back navigate={~p"/incidentes"}>Back to incidentes</.back>
+<.back navigate={~p"/incidentes"}>Voltar para a listagem</.back>

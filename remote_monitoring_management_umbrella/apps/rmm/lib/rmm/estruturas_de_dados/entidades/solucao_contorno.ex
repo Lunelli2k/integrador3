@@ -3,7 +3,6 @@ defmodule Rmm.EstruturasDeDados.Entidades.SolucaoContorno do
   import Ecto.Changeset
 
   schema "solucoes_contorno" do
-    field :codigo, :integer
     field :descricao, :string
     field :situacao, Ecto.Enum, values: [:Ativo, :Inativo]
     field :solucao, :string
@@ -14,7 +13,7 @@ defmodule Rmm.EstruturasDeDados.Entidades.SolucaoContorno do
   @doc false
   def changeset(solucao_contorno, attrs) do
     solucao_contorno
-    |> cast(attrs, [:codigo, :descricao, :situacao, :solucao])
-    |> validate_required([:codigo, :descricao, :situacao, :solucao])
+    |> cast(attrs, [:descricao, :situacao, :solucao])
+    |> validate_required([:descricao, :situacao, :solucao])
   end
 end
