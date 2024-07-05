@@ -1,12 +1,11 @@
 <div class="mx-auto max-w-sm">
   <.header class="text-center">
-    Log in to account
+    Log in
     <:subtitle>
-      Don't have an account?
+      Não possui uma Conta?
       <.link navigate={~p"/user/register"} class="font-semibold text-brand hover:underline">
-        Sign up
+        Cadastrar-se
       </.link>
-      for an account now.
     </:subtitle>
   </.header>
 
@@ -17,9 +16,9 @@
     <.input field={f[:password]} type="password" label="Password" required />
 
     <:actions :let={f}>
-      <.input field={f[:remember_me]} type="checkbox" label="Keep me logged in" />
+      <.input field={f[:remember_me]} type="checkbox" label="Mantenha-me conectado" />
       <.link href={~p"/user/reset_password"} class="text-sm font-semibold">
-        Forgot your password?
+        Esqueceu sua senha?
       </.link>
     </:actions>
     <:actions>

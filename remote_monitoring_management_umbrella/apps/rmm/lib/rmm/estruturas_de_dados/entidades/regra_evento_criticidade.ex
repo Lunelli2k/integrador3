@@ -11,8 +11,9 @@ defmodule Rmm.EstruturasDeDados.Entidades.RegraEventoCriticidade do
     field :prioridade, :integer
     field :impacto, Ecto.Enum, values: [:Nenhum, :Baixo, :Médio, :Alto, :Altíssimo]
     field :gera_incidente, :boolean, default: false
-    field :item_configuracao_id, :id
-    field :solucao_contorno_id, :id
+
+    belongs_to :itens_configuracao, Rmm.EstruturasDeDados.Entidades.ItemConfiguracao, foreign_key: :item_configuracao_id
+    belongs_to :solucoes_contorno, Rmm.EstruturasDeDados.Entidades.SolucaoContorno, foreign_key: :solucao_contorno_id
 
     timestamps()
   end
@@ -20,7 +21,7 @@ defmodule Rmm.EstruturasDeDados.Entidades.RegraEventoCriticidade do
   @doc false
   def changeset(regra_evento_criticidade, attrs) do
     regra_evento_criticidade
-    |> cast(attrs, [:descricao, :tipo_evento_criticidade, :condicao, :propriedade_verificar, :valor_propriedade, :prioridade, :impacto, :gera_incidente])
-    |> validate_required([:descricao, :tipo_evento_criticidade, :condicao, :propriedade_verificar, :valor_propriedade, :prioridade, :impacto, :gera_incidente])
+    |> cast(attrs, [:descricao, :tipo_evento_criticidade, :condicao, :propriedade_verificar, :valor_propriedade, :prioridade, :impacto, :gera_incidente, :item_configuracao_id, :solucao_contorno_id])
+    |> validate_required([:descricao, :tipo_evento_criticidade, :condicao, :propriedade_verificar, :valor_propriedade, :prioridade, :impacto, :gera_incidente, :item_configuracao_id])
   end
 end

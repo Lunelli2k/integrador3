@@ -2,6 +2,9 @@
   Criar nova Regra de Evento de Criticidade
 </.header>
 
-<.regra_evento_criticidade_form changeset={@changeset} action={~p"/regras_eventos_criticidade"} />
+<.regra_evento_criticidade_form 
+  changeset={@changeset} action={~p"/regras_eventos_criticidade"}
+  itens_configuracao={@itens_configuracao}
+  solucoes_contorno={@solucoes_contorno} />
 
 <.back navigate={~p"/regras_eventos_criticidade"}>Voltar para a listagem</.back>
