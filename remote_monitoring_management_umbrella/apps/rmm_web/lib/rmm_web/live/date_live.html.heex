@@ -6,6 +6,7 @@
   
   <style>
     .usage-box {
+      border: 1px solid black;
       display: inline-block;
       width: 200px;
       height: 150px;
@@ -27,26 +28,28 @@
       background-color: #F44336; /* Red */
     }
     .temperature-box {
-      display: inline-block;
+      display: flex;
       width: 650px;
       height: 75px;
       border-radius: 10px;
-      text-align: center;
+      border: 1px solid black;
+      align-items: center;
+      justify-content: center;
       margin: 10px;
       color: white;
       font-size: 20px;
       font-weight: bold;
-      padding: 20px;
+      padding: 40px;
+      margin-top: 0px;
       background-color: #FF9800; /* Orange */
     }
     .box-label {
-      padding: 5px;
       font-size: 16px;
       margin-top: 10px;
     }
     .gb-usage {
       font-size: 14px;
-      color: #6c757d; /* Bootstrap muted text color */
+      color: #F3F7EC; /* Bootstrap muted text color */
     }
   </style>
 </head>
@@ -54,7 +57,7 @@
   <div>
     <div class="usage-box processor-box">
       <%= @data["processador_percentual"] || "0.00" %>%<br>
-      <span class="gb-usage"></span><br>
+      <span class="gb-usage">(<%= @data["processador_freq_atual"] || "0.00" %> MHz)</span><br>
       <span class="box-label">Processador</span>
     </div>
     
@@ -72,10 +75,10 @@
 
     <%= if @data["processador_temperatura"] > 0 do %>
       <div class="temperature-box">
-        <%= @data["processador_temperatura"] %>&deg;C<br>
-        <span class="box-label">Temperatura</span>
+        Temperatura processador:  <%= @data["processador_temperatura"] %>&deg;C<br>
       </div>
     <% end %>
+    
   </div>
 </body>
 </html>
