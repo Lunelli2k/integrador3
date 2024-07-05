@@ -44,8 +44,8 @@
       background-color: #FF9800; /* Orange */
     }
     .box-label {
+      display: block;
       font-size: 16px;
-      margin-top: 10px;
     }
     .gb-usage {
       font-size: 14px;
@@ -56,21 +56,24 @@
 <body>
   <div>
     <div class="usage-box processor-box">
+      <span class="box-label">Processador</span>
       <%= @data["processador_percentual"] || "0.00" %>%<br>
       <span class="gb-usage">(<%= @data["processador_freq_atual"] || "0.00" %> MHz)</span><br>
-      <span class="box-label">Processador</span>
+      <span class="gb-usage"></span><br>
     </div>
     
     <div class="usage-box memory-box">
+      <span class="box-label">Memória</span>
       <%= @data["memoria_percentual"] || "0.00" %>%<br>
       <span class="gb-usage"></span><br>
-      <span class="box-label">Memória</span>
+      <span class="gb-usage"></span><br>
     </div>
     
     <div class="usage-box storage-box">
-      <%= @data["armazenamento_utilizado_percentual"] || "0.00" %>%<br>
-      <span class="gb-usage">(<%= @data["armazenamento_utilizado"] || "0.00" %> GB)</span><br>
       <span class="box-label">Armazenamento</span>
+      <%= @data["armazenamento_utilizado_percentual"] || "0.00" %>%<br>
+      <span class="gb-usage">(Livre: <%= @data["armazenamento_livre"] || "0.00" %>GB)</span><br>
+      <span class="gb-usage">(Utilizado: <%= @data["armazenamento_utilizado"] || "0.00" %>GB)</span><br>
     </div>
 
     <%= if @data["processador_temperatura"] != "N/A" do %>
